@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  polishName: MyString
+  polishDescription: MyString
+  englishName: MyString
+  englishDescription: MyString
+
+two:
+  polishName: MyString
+  polishDescription: MyString
+  englishName: MyString
+  englishDescription: MyString

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Polishname:</b>
+  <%= @category.polishName %>
+</p>
+
+<p>
+  <b>Polishdescription:</b>
+  <%= @category.polishDescription %>
+</p>
+
+<p>
+  <b>Englishname:</b>
+  <%= @category.englishName %>
+</p>
+
+<p>
+  <b>Englishdescription:</b>
+  <%= @category.englishDescription %>
+</p>
+
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
