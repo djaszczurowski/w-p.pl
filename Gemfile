@@ -7,6 +7,14 @@ gem 'rails', '3.0.5'
 
 gem 'pg', :require => 'pg'
 
+group :development do
+	gem 'rspec-rails'
+end
+
+group :test do
+	gem 'rspec'
+	gem 'webrat'
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 
