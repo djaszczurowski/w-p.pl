@@ -17,5 +17,10 @@ class PagesController < ApplicationController
   def contact
   	@title = "Kontakt"
   end
+	
+  def admin
+  	@admin_panel = true
+  	@title = "Panel administracyjny"
+  end
 
 end
