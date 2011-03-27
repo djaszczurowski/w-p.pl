@@ -2,10 +2,10 @@
 
 <table>
   <tr>
-    <th>Polishname</th>
-    <th>Polishdescription</th>
-    <th>Englishname</th>
-    <th>Englishdescription</th>
+    <th>Polish name</th>
+    <th>Polish description</th>
+    <th>English name</th>
+    <th>English description</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +13,10 @@
 
 <% @categories.each do |category| %>
   <tr>
-    <td><%= category.polishName %></td>
-    <td><%= category.polishDescription %></td>
-    <td><%= category.englishName %></td>
-    <td><%= category.englishDescription %></td>
+    <td><%= category.polish_name %></td>
+    <td><%= category.polish_description %></td>
+    <td><%= category.english_name %></td>
+    <td><%= category.english_description %></td>
     <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>

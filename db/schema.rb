@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110327190146) do
+ActiveRecord::Schema.define(:version => 20110327192123) do
 
   create_table "categories", :force => true do |t|
-    t.string   "polishName"
-    t.string   "polishDescription"
-    t.string   "englishName"
-    t.string   "englishDescription"
+    t.string   "polish_name"
+    t.string   "polish_description"
+    t.string   "english_name"
+    t.string   "english_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

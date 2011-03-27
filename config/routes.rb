@@ -1,5 +1,7 @@
 WPPl::Application.routes.draw do
   
+  resources :categories
+
   resources :postulates
 
   resources :commentaries
@@ -19,8 +21,6 @@ WPPl::Application.routes.draw do
   get "pages/postulates"
 
   get "pages/contact"
-
-  resources :categories
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
