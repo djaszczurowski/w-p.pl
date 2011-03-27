@@ -1,5 +1,6 @@
 WPPl::Application.routes.draw do
   
+  #map.users '/users', :controller => 'user'
   resources :categories
 
   resources :postulates
@@ -11,16 +12,12 @@ WPPl::Application.routes.draw do
   resources :users
 
   root :to => 'pages#home'
-  match '/w', :to => 'pages#home'
-  get "pages/home"
-
-  get "pages/about"
-
-  get "pages/archive"
-
-  get "pages/postulates"
-
-  get "pages/contact"
+  
+  match "/about", :to => 'pages#about'
+  match "/archive", :to => 'pages#archive'
+  match "/postulates", :to => 'pages#postulates'
+  match "/contact", :to => 'pages#contact'	
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

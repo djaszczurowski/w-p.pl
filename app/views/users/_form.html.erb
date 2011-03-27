@@ -21,11 +21,12 @@
   </div>
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.password_field :password_hash %>
   </div>
+  
   <div class="field">
     <%= f.label :privilegesLevel %><br />
-    <%= f.text_field :privilegesLevel %>
+    <%= f.text_field :privileges_level %>
   </div>
   <div class="actions">
     <%= f.submit %>

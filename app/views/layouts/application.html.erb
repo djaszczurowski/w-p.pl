@@ -7,6 +7,22 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+	
+	<div id="registration_panel">
+		<%= link_to "Rejestruj", new_user_path %>	
+	</div>	
+	</br></br></br>
+	PODSTRONY
+	</br></br>
+	
+	<div id="pages_panel">
+		<%= link_to "Glowna", root_url%>
+		<%= link_to "O nas", '/about'%>
+		<%= link_to "Archiwum", '/archive'%>
+		<%= link_to "Postulaty", '/postulates'%>
+		<%= link_to "Kontakt", 'contact'%>	
+	</div>
+	
 <h3>Jestes na stronie: <%= @title%> </h3>
 <%= yield %>
 

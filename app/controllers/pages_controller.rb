@@ -7,12 +7,15 @@ class PagesController < ApplicationController
   end
 
   def archive
+  	@title = "Archiwum"
   end
 
   def postulates
+  	@title = "Postulaty"
   end
 
   def contact
+  	@title = "Kontakt"
   end
 
 end
