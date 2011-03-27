@@ -1,6 +1,7 @@
 WPPl::Application.routes.draw do
   
   #map.users '/users', :controller => 'user'
+  root :to => 'pages#home'
   resources :categories
 
   resources :postulates
@@ -11,7 +12,7 @@ WPPl::Application.routes.draw do
 
   resources :users
 
-  root :to => 'pages#home'
+ 
   
   match "/about", :to => 'pages#about'
   match "/archive", :to => 'pages#archive'
