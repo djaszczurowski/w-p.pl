@@ -6,15 +6,18 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg', :require => 'pg'
+gem 'authlogic'
+#group :development do
+#	gem 'rspec-rails'
+#end
 
-group :development do
-	gem 'rspec-rails'
-end
+#group :test do
+#	gem 'rspec'
+#	gem 'webrat'
+#end
 
-group :test do
-	gem 'rspec'
-	gem 'webrat'
-end
+
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
