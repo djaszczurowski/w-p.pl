@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @commentary.user_id %>
+</p>
+
+<p>
+  <b>News:</b>
+  <%= @commentary.news_id %>
+</p>
+
+<p>
+  <b>Posted:</b>
+  <%= @commentary.posted %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @commentary.subject %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @commentary.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_commentary_path(@commentary) %> |
+<%= link_to 'Back', commentaries_path %>

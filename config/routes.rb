@@ -1,4 +1,25 @@
 WPPl::Application.routes.draw do
+  
+  resources :postulates
+
+  resources :commentaries
+
+  resources :news
+
+  resources :users
+
+  root :to => 'pages#home'
+  match '/w', :to => 'pages#home'
+  get "pages/home"
+
+  get "pages/about"
+
+  get "pages/archive"
+
+  get "pages/postulates"
+
+  get "pages/contact"
+
   resources :categories
 
   # The priority is based upon order of creation:

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @postulate.user_id %>
+</p>
+
+<p>
+  <b>Uniform link:</b>
+  <%= @postulate.uniform_link %>
+</p>
+
+<p>
+  <b>Commentary:</b>
+  <%= @postulate.commentary %>
+</p>
+
+
+<%= link_to 'Edit', edit_postulate_path(@postulate) %> |
+<%= link_to 'Back', postulates_path %>

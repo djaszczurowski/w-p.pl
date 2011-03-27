@@ -1,10 +1,10 @@
 class CreateCategories < ActiveRecord::Migration
   def self.up
     create_table :categories do |t|
-      t.string :polishName
-      t.string :polishDescription
-      t.string :englishName
-      t.string :englishDescription
+      t.string :polish_name
+      t.string :polish_description
+      t.string :english_name
+      t.string :english_description
 
       t.timestamps
     end

@@ -1,0 +1,27 @@
+<h1>Listing postulates</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Uniform link</th>
+    <th>Commentary</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @postulates.each do |postulate| %>
+  <tr>
+    <td><%= postulate.user_id %></td>
+    <td><%= postulate.uniform_link %></td>
+    <td><%= postulate.commentary %></td>
+    <td><%= link_to 'Show', postulate %></td>
+    <td><%= link_to 'Edit', edit_postulate_path(postulate) %></td>
+    <td><%= link_to 'Destroy', postulate, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Postulate', new_postulate_path %>

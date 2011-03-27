@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @news.user_id %>
+</p>
+
+<p>
+  <b>Posted:</b>
+  <%= @news.posted %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @news.category_id %>
+</p>
+
+<p>
+  <b>Polish subject:</b>
+  <%= @news.polish_subject %>
+</p>
+
+<p>
+  <b>Polish news:</b>
+  <%= @news.polish_news %>
+</p>
+
+<p>
+  <b>English subject:</b>
+  <%= @news.english_subject %>
+</p>
+
+<p>
+  <b>English news:</b>
+  <%= @news.english_news %>
+</p>
+
+
+<%= link_to 'Edit', edit_news_path(@news) %> |
+<%= link_to 'Back', news_index_path %>
