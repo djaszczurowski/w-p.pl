@@ -1,12 +1,12 @@
 WPPl::Application.routes.draw do
   
+  resources :comments
+
   #map.users '/users', :controller => 'user'
   root :to => 'pages#home'
   resources :categories
 
   resources :postulates
-
-  resources :commentaries
 
   resources :news
 

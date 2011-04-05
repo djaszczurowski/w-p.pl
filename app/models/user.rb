@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
+	
+	set_primary_key :user_id
+	
 	#acts_as_authentic 
 	
-	has_many :news, :postulates, :commentaries
+	#has_many :news, :postulates, :commentaries
 	
 	#before_save :encrypt_password
 	
