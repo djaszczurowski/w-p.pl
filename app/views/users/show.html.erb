@@ -11,16 +11,19 @@
 </p>
 
 <p>
-  <b>Privilegeslevel:</b>
-  <%= @user.privilegesLevel %>
-</p>
-
-<p>
-  <b>Password:</b>
+  <b>Passhash:</b>
   <%= @user.passHash %>
 </p>
 
+<p>
+  <b>Passsalt:</b>
+  <%= @user.passSalt %>
+</p>
 
+<p>
+  <b>Privilegeslevel:</b>
+  <%= @user.privilegesLevel %>
+</p>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

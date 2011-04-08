@@ -1,24 +1,47 @@
 WPPl::Application.routes.draw do
   
-  resources :comments
+  get "admin/news_managment"
 
-  #map.users '/users', :controller => 'user'
-  root :to => 'pages#home'
+  get "admin/users_managment"
+
+  get "admin/postulates_managment"
+
+  match "/loguj" => "sessions#new", :as => 'login'
+  match '/wyloguj' => "sessions#destroy", :as => 'logout'
+  match "/rejestruj" => "user#new", :as => 'register'
+  #match "/admin_panel" => "pages#admin_panel", :as => 'admin_panel'
+  #match "/admin_panel/news_managment" => "pages#news_managment", :as  => 'news_managment'
+  match "/admin" => "pages#admin_log", :as => 'admin'
+  match "admin/news_managment" => "admin#news_managment", :as => "news_managment"
+  match "admin/users_managment" => "admin#users_managment", :as => "users_managment"
+  match "admin/postulates_managment" => "admin#postulates_managment", :as => "postulates_managment"
+  resources :admins
+  resources :pages
+  resources :sessions
+  resources :users
+ 
+  resources :postulates
+
   resources :categories
 
-  resources :postulates
+  resources :comments
 
   resources :news
 
-  resources :users
+  resources :users do
+   resources :comments
+   #resources :news
+  end
 
+  #map.users '/users', :controller => 'user'
+  root :to => 'pages#home'
  
   
-  match "/about", :to => 'pages#about'
-  match "/archive", :to => 'pages#archive'
-  match "/postulates", :to => 'pages#postulates'
-  match "/contact", :to => 'pages#contact'	
-  match "/admin", :to => 'pages#admin'
+  match "/about", :to => 'pages#about', :as => 'about'
+  match "/archive", :to => 'pages#archive', :as => 'archive'
+  match "/postulates", :to => 'pages#postulates', :as => 'postulates'
+  match "/contact", :to => 'pages#contact', :as => 'contact'
+  #match "/admin", :to => 'admin#new', :as => "admin_log"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

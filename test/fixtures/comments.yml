@@ -1,15 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  user_id: 
-  news_id: 
   posted: 2011-04-05
   subject: MyString
   comment: MyString
 
 two:
-  user_id: 
-  news_id: 
   posted: 2011-04-05
   subject: MyString
   comment: MyString

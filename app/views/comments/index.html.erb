@@ -2,8 +2,6 @@
 
 <table>
   <tr>
-    <th>User</th>
-    <th>News</th>
     <th>Posted</th>
     <th>Subject</th>
     <th>Comment</th>
@@ -14,8 +12,6 @@
 
 <% @comments.each do |comment| %>
   <tr>
-    <td><%= comment.user_id %></td>
-    <td><%= comment.news_id %></td>
     <td><%= comment.posted %></td>
     <td><%= comment.subject %></td>
     <td><%= comment.comment %></td>

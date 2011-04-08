@@ -8,25 +8,53 @@
 </head>
 <body>
 	
-	
-	
-	<% if(!((@admin_panel)))%>
-		<div id="registration_panel">
-			<%= link_to "Rejestruj", new_user_path %>	
-		</div>	
-		</br></br></br>
-		PODSTRONY
-		</br></br>
-		<div id="pages_panel">
-			<%= link_to "Glowna", root_url%>
-			<%= link_to "O nas", '/about'%>
-			<%= link_to "Archiwum", '/archive'%>
-			<%= link_to "Postulaty", '/postulates'%>
-			<%= link_to "Kontakt", 'contact'%>	
-		</div>	
+	<%flash.each do |name, msg| %>
+		<%= content_tag :div, msg, :id => "flash#{name}"%>
 	<% end%>
 	
-<h3>Jestes na stronie: <%= @title%> </h3>
+	<% if is_english_language%>			
+		<% if current_user%>
+			<div id="sign_in_out_panel">
+				Logged as: <%= User.find(current_user).username%> 
+				<%= link_to "Log out", logout_url%>
+			</div>
+		<%else%>
+			<%= link_to "Register", new_user_path %>
+			<%= link_to "Log in", login_url%>
+		<% end%>			
+		<% if(!(@admin_panel))%>		
+			</br></br></br>				
+			<div id="pages_panel">
+				<%= link_to "Main", root_url%>
+				<%= link_to "About", about_url%>
+				<%= link_to "Archive", archive_url%>
+				<%= link_to "Postulates", postulates_url%>
+				<%= link_to "Contact", contact_url%>	
+			</div>	
+			<% end%>	
+	<% else %>	
+		<% if current_user%>
+			<div id="sign_in_out_panel">
+				Zalogowany jako: <%= User.find(current_user).username%> 
+				<%= link_to "Wyloguj", logout_url%>
+			</div>
+			<%else%>
+				<%= link_to "Rejestruj", new_user_path %>
+				<%= link_to "Zaloguj", login_url%>
+		<% end%>			
+		<% if(!(@admin_panel))%>				
+			</br></br></br>				
+			<div id="pages_panel">
+				<%= link_to "Glowna", root_url%>
+				<%= link_to "O nas", about_url%>
+				<%= link_to "Archiwum", archive_url%>
+				<%= link_to "Postulaty", postulates_url%>
+				<%= link_to "Kontakt", contact_url%>	
+			</div>	
+		<% end%>	
+	<% end%>
+	
+<h3><%= @title%> </h3>
 <%= yield %>
 
 </body>

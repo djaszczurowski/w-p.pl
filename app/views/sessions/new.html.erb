@@ -1,0 +1,29 @@
+<h1>Loguj </h1>
+
+<%= form_for(:session, :url => sessions_path) do |f| %>
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Zaloguj" %>
+  </div>
+<% end %>
+
+<p>New user? <%= link_to "Sign up now!", new_user_path %></p>
+
+<!-- <%= form_tag sessions_path do%>
+	<p>
+		<%= label_tag :username %><br/>
+		<%= text_field_tag :username, params[:username]%>
+	</p>
+	<p>
+		<%= label_tag :password%><br/>
+		<%= password_field_tag :password%>
+	</p>
+	<p class="button"><%= submit_tag%> </p>
+<% end%> -->

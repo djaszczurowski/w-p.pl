@@ -4,7 +4,8 @@
   <tr>
     <th>Username</th>
     <th>Email</th>
-    <th>Password</th>
+    <th>Passhash</th>
+    <th>Passsalt</th>
     <th>Privilegeslevel</th>
     <th></th>
     <th></th>
@@ -16,6 +17,7 @@
     <td><%= user.username %></td>
     <td><%= user.email %></td>
     <td><%= user.passHash %></td>
+    <td><%= user.passSalt %></td>
     <td><%= user.privilegesLevel %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>

@@ -1,4 +1,5 @@
 class NewsController < ApplicationController
+
   # GET /news
   # GET /news.xml
   def index
@@ -24,17 +25,29 @@ class NewsController < ApplicationController
   # GET /news/new
   # GET /news/new.xml
   def new
-    @news = News.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @news }
-    end
+  	if is_admin_logged
+  		@admin_panel = true
+	    @news = News.new	
+	    respond_to do |format|
+	      format.html # new.html.erb
+	      format.xml  { render :xml => @news }
+	    end
+	   
+	 else
+	 	flash.now[:error] = "Zaloguj sie jako administrator"
+	 	redirect_to root_url	 	
+	 end
   end
 
   # GET /news/1/edit
   def edit
-    @news = News.find(params[:id])
+  	if is_admin_logged
+  		@admin_panel = true
+    	@news = News.find(params[:id])
+   else
+   		flash.now[:error] = "Zaloguj sie jako administrator"
+	 	redirect_to root_url	  	
+	 end
   end
 
   # POST /news
@@ -72,12 +85,17 @@ class NewsController < ApplicationController
   # DELETE /news/1
   # DELETE /news/1.xml
   def destroy
-    @news = News.find(params[:id])
-    @news.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(news_index_url) }
-      format.xml  { head :ok }
-    end
+  	if is_admin_logged
+	    @news = News.find(params[:id])
+	    @news.destroy
+	
+	    respond_to do |format|
+	      format.html { redirect_to(news_index_url) }
+	      format.xml  { head :ok }
+	    end
+   	else
+   		flash.now[:error] = "Zaloguj sie jako administrator"
+	 	redirect_to root_url	 	
+	 end
   end
 end

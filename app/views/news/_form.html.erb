@@ -12,32 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
     <%= f.label :posted %><br />
-    <%= f.datetime_select :posted %>
+    <%= f.date_select :posted %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br />
-    <%= f.text_field :category_id %>
+    <%= f.label :polishSubject %><br />
+    <%= f.text_field :polishSubject %>
   </div>
   <div class="field">
-    <%= f.label :polish_subject %><br />
-    <%= f.text_field :polish_subject %>
+    <%= f.label :polishNews %><br />
+    <%= f.text_field :polishNews %>
   </div>
   <div class="field">
-    <%= f.label :polish_news %><br />
-    <%= f.text_field :polish_news %>
+    <%= f.label :englishSubject %><br />
+    <%= f.text_field :englishSubject %>
   </div>
   <div class="field">
-    <%= f.label :english_subject %><br />
-    <%= f.text_field :english_subject %>
-  </div>
-  <div class="field">
-    <%= f.label :english_news %><br />
-    <%= f.text_field :english_news %>
+    <%= f.label :englishNews %><br />
+    <%= f.text_field :englishNews %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  posted: 2011-04-05
+  polishSubject: MyString
+  polishNews: MyString
+  englishSubject: MyString
+  englishNews: MyString
+
+two:
+  posted: 2011-04-05
+  polishSubject: MyString
+  polishNews: MyString
+  englishSubject: MyString
+  englishNews: MyString
