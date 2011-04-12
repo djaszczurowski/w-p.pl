@@ -8,14 +8,15 @@ WPPl::Application.routes.draw do
 
   match "/loguj" => "sessions#new", :as => 'login'
   match '/wyloguj' => "sessions#destroy", :as => 'logout'
-  match "/rejestruj" => "user#new", :as => 'register'
+  match "/rejestruj" => "users#new", :as => 'register'
+  #match "/edytuj" => "users#edit", :as => "edit_account"
   #match "/admin_panel" => "pages#admin_panel", :as => 'admin_panel'
   #match "/admin_panel/news_managment" => "pages#news_managment", :as  => 'news_managment'
   match "/admin" => "pages#admin_log", :as => 'admin'
   match "admin/news_managment" => "admin#news_managment", :as => "news_managment"
   match "admin/users_managment" => "admin#users_managment", :as => "users_managment"
   match "admin/postulates_managment" => "admin#postulates_managment", :as => "postulates_managment"
-  match "/language" => "application#change_language", :as => "language"
+  match "/language" => "application#change_language", :as => "change_language"
   
   resources :admins
   resources :pages

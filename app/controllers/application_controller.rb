@@ -31,7 +31,6 @@ class ApplicationController < ActionController::Base
   end
   
   def is_english_language
-    puts cookies[:lang]
   	return cookies[:lang] == "en"
   end
   

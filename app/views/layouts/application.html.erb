@@ -63,7 +63,7 @@
                 <% if is_english_language%>
 
                   <li class="p2">
-                    <a><%=  link_to "Polska wersja >>", language_path%></a><p></p>
+                    <a><%=  link_to "Polska wersja >>", change_language_path%></a><p></p>
                   </li>
                   <li>
                     <% if current_user%>
@@ -82,7 +82,7 @@
                             <%= link_to "Logout", logout_url%>
                           </li>
                           <li>
-                            <%= link_to "My account", logout_url%>
+                            <%= link_to "My account", edit_user_path(user)%>
                           </li>
                         </ul>
                       </div>
@@ -112,7 +112,7 @@
                 <%  else %>
 
                   <li class="p2">
-                    <a><%=  link_to "English version >>", language_path%></a><p></p>
+                    <a><%=  link_to "English version >>", change_language_path%></a><p></p>
                   </li>
                   <li>
                     <% if current_user %>
@@ -131,7 +131,7 @@
                             <%= link_to "Wyloguj", logout_url%>
                           </li>
                           <li>
-                            <%= link_to "Moje konto", logout_url%>
+                            <%= link_to "Moje konto", edit_user_path(user)%>
                           </li>
                         </ul>
                       </div>
@@ -142,11 +142,11 @@
                       <ul>
                         <%= form_for(:session, :url => sessions_path) do |f| %>
                           <p class="field">
-                            <%= f.label :username %>
+                            <%= f.label "Użytkownik" %>
                             <%= f.text_field :username %>
                           </p>
                           <p class="field">
-                            <%= f.label :password %>
+                            <%= f.label "Hasło" %>
                             <%= f.password_field :password %>
                           </p>
                           <p class="actions">

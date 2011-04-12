@@ -1,6 +1,13 @@
-<h1>Editing user</h1>
+<% if is_english_language%>
+  <h1>Editing user</h1><br />
+  <%= render 'form' %>
+  <%= link_to 'Show', @user %> |
+  <%= link_to 'Back', users_path %>
+<%  else %>
+  <h1>Edytuj użytkownika</h1><br />
+  <%= render 'form' %>
+  <%= link_to 'Pokaż', @user %> |
+  <%= link_to 'Wróć', users_path %>
+<% end %>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
