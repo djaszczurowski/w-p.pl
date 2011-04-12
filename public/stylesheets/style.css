@@ -163,7 +163,7 @@ a:hover {
 }
 
 #menu a {
-        display: block;
+	display: block;
 	height: 35px;
 	margin-right: 1px;
 	padding: 16px 40px 0px 40px;
@@ -378,4 +378,19 @@ a:hover {
 
 #footer a {
 	color: #8A8A8A;
+}
+
+/* Google Maps */
+
+#map_canvas { 
+	height: 300px;
+	width: 300px; 
+	float: left;
+
+}
+#map_description{
+	width: 270px;
+	float: right;
+	height: 300px;
+	text-align:justify;
 }
