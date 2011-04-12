@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :is_admin_logged
   helper_method :is_english_language
-  
+  helper_method :change_language
+
   def is_admin_logged
   	if session[:current_user_id]
   		user = User.find(session[:current_user_id])
@@ -15,14 +16,23 @@ class ApplicationController < ActionController::Base
   		false
   	end
   end
+
+  def change_language
+    if is_english_language
+      cookies[:lang] = "pl"
+    else
+      cookies[:lang] = "en"
+    end
+    redirect_to root_url
+  end
   
   def admin_panel  	
   	return @admin_panel
   end
   
   def is_english_language
-  	#na podstawie ciasteczka ? 
-  	return @is_english_lang
+    puts cookies[:lang]
+  	return cookies[:lang] == "en"
   end
   
   def current_user  	  

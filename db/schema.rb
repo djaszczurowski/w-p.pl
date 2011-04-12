@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20110327192123) do
     t.integer  "privileges_level"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -15,6 +15,8 @@ WPPl::Application.routes.draw do
   match "admin/news_managment" => "admin#news_managment", :as => "news_managment"
   match "admin/users_managment" => "admin#users_managment", :as => "users_managment"
   match "admin/postulates_managment" => "admin#postulates_managment", :as => "postulates_managment"
+  match "/language" => "application#change_language", :as => "language"
+  
   resources :admins
   resources :pages
   resources :sessions

@@ -59,107 +59,108 @@
             </div>
 
             <div id="sidebar">
-
               <ul>
+                <% if is_english_language%>
 
-                <li>
-                  <% if is_english_language%>
-
+                  <li class="p2">
+                    <a><%=  link_to "Polska wersja >>", language_path%></a><p></p>
+                  </li>
+                  <li>
                     <% if current_user%>
                       <div id="sign_in_out_panel">
-                        Logged as: <%= User.find(current_user).username%>
-                        <%= link_to "Log out", logout_url%>
+                        <%  user = User.find(current_user) %>
+                        <h2>Welcome <a href="#"> <%= user.username%></a></h2>
+                        <ul>
+                          <li>
+                            <% if user.avatar? %>
+                              <%= image_tag(user.avatar, :size => "64x64") %>
+                            <% else %>
+                              <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to "Logout", logout_url%>
+                          </li>
+                          <li>
+                            <%= link_to "My account", logout_url%>
+                          </li>
+                        </ul>
                       </div>
-                    <%else%>
-
-                      <h1>Login </h1>
-
-                      <%= form_for(:session, :url => sessions_path) do |f| %>
-                        <div class="field">
-                          <%= f.label :username %><br />
-                          <%= f.text_field :username %>
-                        </div>
-                        <div class="field">
-                          <%= f.label :password %><br />
-                          <%= f.password_field :password %>
-                        </div>
-                        <div class="actions">
-                          <%= f.submit "Login" %>
-                        </div>
-                      <% end %>
-
-                      <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
-
-                      <!-- <%= form_tag sessions_path do%>
-                  <p>
-                        <%= label_tag :username %><br/>
-                        <%= text_field_tag :username, params[:username]%>
-                  </p>
-                  <p>
-                        <%= label_tag :password%><br/>
-                        <%= password_field_tag :password%>
-                  </p>
-                  <p class="button"><%= submit_tag%> </p>
-                      <% end%> -->
-
-
-                    <% end%>
-
-                  <%  else %>
-
-
-                    <% if current_user%>
-                      <div id="sign_in_out_panel">
-                        Zalogowany jako: <%= User.find(current_user).username%>
-                        <%= link_to "Wyloguj", logout_url%>
-                      </div>
-                    <%else%>
-
-                      <h1>Loguj </h1>
-
-                      <%= form_for(:session, :url => sessions_path) do |f| %>
-                        <div class="field">
-                          <%= f.label :username %><br />
-                          <%= f.text_field :username %>
-                        </div>
-                        <div class="field">
-                          <%= f.label :password %><br />
-                          <%= f.password_field :password %>
-                        </div>
-                        <div class="actions">
-                          <%= f.submit "Zaloguj" %>
-                        </div>
-                      <% end %>
-
-                      <p>Nie masz konta? <%= link_to "Zarejestruj się!", new_user_path %></p>
-
-                      <!-- <%= form_tag sessions_path do%>
-                    <p>
-                        <%= label_tag :username %><br/>
-                        <%= text_field_tag :username, params[:username]%>
-                    </p>
-                    <p>
-                        <%= label_tag :password%><br/>
-                        <%= password_field_tag :password%>
-                    </p>
-                    <p class="button"><%= submit_tag%> </p>
-                      <% end%> -->
-
-
-                    <% end%>
-
-
-                  <% end %>
-                </li>
-
-                <li>
-                  <%flash.each do |name, msg| %>
-                    <%= content_tag :div, msg, :id => "flash#{name}"%>
+                    </li>
+                  <%else%>
+                    <li>
+                      <h2>Login </h2>
+                      <ul>
+                        <%= form_for(:session, :url => sessions_path) do |f| %>
+                          <p class="field">
+                            <%= f.label :username %>
+                            <%= f.text_field :username %>
+                          </p>
+                          <p class="field">
+                            <%= f.label :password %>
+                            <%= f.password_field :password %>
+                          </p>
+                          <p class="actions">
+                            <%= f.submit "Login" %>
+                          </p>
+                        <% end %>
+                        <p>No account? <%= link_to "Register!", new_user_path %></p>
+                      </ul>
+                    </li>
                   <% end%>
-                </li>
+
+                <%  else %>
+
+                  <li class="p2">
+                    <a><%=  link_to "English version >>", language_path%></a><p></p>
+                  </li>
+                  <li>
+                    <% if current_user %>
+                      <div id="sign_in_out_panel">
+                        <%  user = User.find(current_user) %>
+                        <h2>Witaj <a href="#"> <%= user.username%></a></h2>
+                        <ul>
+                          <li>
+                            <% if user.avatar? %>
+                              <%= image_tag(user.avatar, :size => "64x64") %>
+                            <% else %>
+                              <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
+                            <% end %>
+                          </li>
+                          <li>
+                            <%= link_to "Wyloguj", logout_url%>
+                          </li>
+                          <li>
+                            <%= link_to "Moje konto", logout_url%>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  <%else%>
+                    <li>
+                      <h2>Loguj </h2>
+                      <ul>
+                        <%= form_for(:session, :url => sessions_path) do |f| %>
+                          <p class="field">
+                            <%= f.label :username %>
+                            <%= f.text_field :username %>
+                          </p>
+                          <p class="field">
+                            <%= f.label :password %>
+                            <%= f.password_field :password %>
+                          </p>
+                          <p class="actions">
+                            <%= f.submit "Zaloguj" %>
+                          </p>
+                        <% end %>
+                        <p>Nie masz konta? <%= link_to "Zarejestruj się!", new_user_path %></p>
+                      </ul>
+                    </li>
+                  <% end%>
+
+                <% end %>
 
               </ul>
-
             </div>
             <div style="clear: both;">&nbsp;</div>
 
