@@ -1,9 +1,9 @@
+# encoding: utf-8
 class PostulatesController < ApplicationController
   # GET /postulates
   # GET /postulates.xml
   def index
     @postulates = Postulate.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @postulates }
@@ -14,7 +14,7 @@ class PostulatesController < ApplicationController
   # GET /postulates/1.xml
   def show
     @postulate = Postulate.find(params[:id])
-
+	@admin_panel = true
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @postulate }

@@ -2,12 +2,12 @@
   <h1>Editing user</h1><br />
   <%= render 'form' %>
   <%= link_to 'Show', @user %> |
-  <%= link_to 'Back', users_path %>
+  <%= link_to 'Back', root_url %>
 <%  else %>
   <h1>Edytuj użytkownika</h1><br />
   <%= render 'form' %>
   <%= link_to 'Pokaż', @user %> |
-  <%= link_to 'Wróć', users_path %>
+  <%= link_to 'Wróć', root_url %>
 <% end %>
 
 

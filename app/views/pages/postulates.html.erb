@@ -1,2 +1,13 @@
-<h1>Pages#postulates</h1>
-<p>Find me in app/views/pages/postulates.html.erb</p>
+Poznaj nasze zdanie o: 
+
+<table>
+  <tr>
+    <th></th>    
+  </tr>
+
+<% @postulates.each do |postulate| %>
+  <tr>
+    <td><%= link_to postulate.commentary, postulate.uniformLink %></td>   
+  </tr>
+<% end %>
+</table>

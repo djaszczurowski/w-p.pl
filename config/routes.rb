@@ -5,7 +5,8 @@ WPPl::Application.routes.draw do
   get "admin/users_managment"
 
   get "admin/postulates_managment"
-
+  match "/postulaty" => "pages#postulates", :as => 'postulates'
+  match "/postulates" => "pages#postulates", :as => 'postulates'
   match "/loguj" => "sessions#new", :as => 'login'
   match '/wyloguj' => "sessions#destroy", :as => 'logout'
   match "/rejestruj" => "users#new", :as => 'register'
@@ -17,7 +18,8 @@ WPPl::Application.routes.draw do
   match "admin/users_managment" => "admin#users_managment", :as => "users_managment"
   match "admin/postulates_managment" => "admin#postulates_managment", :as => "postulates_managment"
   match "/language" => "application#change_language", :as => "change_language"
-  
+  match "/admin/postulates_managment" => "postulates#index", :as => "postulates_managment"
+  match "/admin/postulates" => "postulates#index", :as => "postulates_managment"
   resources :admins
   resources :pages
   resources :sessions

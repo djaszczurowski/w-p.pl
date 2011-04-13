@@ -1,5 +1,6 @@
+# encoding: utf-8
 class NewsController < ApplicationController
-
+	
   # GET /news
   # GET /news.xml
   def index

@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-	#helper_method :current_user
+	helper_method :sign_in
   def new
   end
     

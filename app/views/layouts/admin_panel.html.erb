@@ -8,7 +8,7 @@
 	  <%= yield :head %>
   </head>
   <body>
-  		<% if current_user%>
+  		
 			<div id="sign_in_out_panel">
 				Zalogowany jako: <%= User.find(current_user).username%> 
 				<%= link_to "Wyloguj", logout_url%>
@@ -16,11 +16,11 @@
 			
 			<br/><br/>	
 			<div id="admin_manage_options">
-				<%= link_to "Newsy", news_managment_url%>
-				<%= link_to "Uzytkownicy", users_managment_url%>
-				<%= link_to "Postulaty", postulates_managment_url%>
+				<%= link_to "News", news_managment_path %>  <!--   %>-->
+				<%= link_to "Users", users_managment_url%>
+				<%= link_to "Postulates", postulates_managment_path%>
 			</div>	
-		<% end%>
+		
 					
   		<%= yield %>	  
   </body>

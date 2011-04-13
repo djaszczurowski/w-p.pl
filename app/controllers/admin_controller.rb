@@ -1,3 +1,4 @@
+# encoding: utf-8
 class AdminController < ApplicationController
   layout "admin_panel"
   
@@ -6,10 +7,12 @@ class AdminController < ApplicationController
   end
   
   def news_managment  
-  	puts "news" 
-		@admin_panel = true
-  		@title = "Zarzadzanie newsami"
-	end
+  	@news = News.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @news }
+    end
+   end
 
   def users_managment
   	

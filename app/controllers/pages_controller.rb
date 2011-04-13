@@ -1,5 +1,6 @@
+# encoding: utf-8
 class PagesController < ApplicationController
-		
+ 
 	#before_filter :authenticate_admin, :only => :admin
   helper_method :admin_panel
   def home
@@ -15,7 +16,11 @@ class PagesController < ApplicationController
   end
 
   def postulates
-  	@title = "Postulaty"
+  	@postulates = Postulate.all
+  	respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @postulates }
+    end
   end
 
   def contact
