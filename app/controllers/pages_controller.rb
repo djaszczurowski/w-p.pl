@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 	#before_filter :authenticate_admin, :only => :admin
   helper_method :admin_panel
   def home
-  	@title = "Strona Glowna";
+  	@title = "Strona Główna";
   end
 
   def about

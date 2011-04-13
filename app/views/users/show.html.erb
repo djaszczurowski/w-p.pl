@@ -1,30 +1,62 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
+<% if is_english_language%>
+  <p>
+    <b>Username:</b>
+    <%= @user.username %>
+  </p>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
+  <p>
+    <b>Email:</b>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <b>Passhash:</b>
-  <%= @user.passHash %>
-</p>
+  <p>
+    <b>Avatar:</b>
+    <%= @user.avatar %>
+    <% if @user.avatar? %>
+      <%= image_tag(@user.avatar, :size => "64x64") %>
+    <% else %>
+      <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
+    <% end %>
+  </p>
 
-<p>
-  <b>Passsalt:</b>
-  <%= @user.passSalt %>
-</p>
-
-<p>
-  <b>Privilegeslevel:</b>
-  <%= @user.privilegesLevel %>
-</p>
+  <p>
+    <b>Privilegeslevel:</b>
+    <%= @user.privilegesLevel %>
+  </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+
+<% else %>
+
+  <p>
+    <b>Użytkownik:</b>
+    <%= @user.username %>
+  </p>
+
+  <p>
+    <b>Email:</b>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <b>Avatar:</b>
+    <%= @user.avatar %>
+    <% if @user.avatar? %>
+      <%= image_tag(@user.avatar, :size => "64x64") %>
+    <% else %>
+      <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
+    <% end %>
+  </p>
+
+  <p>
+    <b>Poziom uprawnień:</b>
+    <%= @user.privilegesLevel %>
+  </p>
+
+  <%= link_to 'Edytuj', edit_user_path(@user) %> |
+  <%= link_to 'Wróć', users_path %>
+<% end %>

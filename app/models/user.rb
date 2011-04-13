@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
 	has_many :news
 	has_many :comments
 	has_many :postulates
-	
-	
+
+  
 	def self.authenticate(username, password)
 		if(username && password)
 			user = find_by_username(username)		
@@ -42,5 +42,6 @@ class User < ActiveRecord::Base
 	def authenticate_with_salt(id, salt)
 		user = find_by_id(id)
 		(user && user.passSalt == salt) ? user : nil
-	end
+  end
+
 end

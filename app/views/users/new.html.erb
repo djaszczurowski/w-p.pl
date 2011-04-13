@@ -1,0 +1,9 @@
+<% if is_english_language%>
+  <h1>New user</h1><br />
+  <%= render 'form' %>
+  <%= link_to 'Back', users_path %>
+<%  else %>
+  <h1>Nowy u≈ºytkownik</h1><br />
+  <%= render 'form' %>
+  <%= link_to 'WrÛc', users_path %>
+<% end %>
