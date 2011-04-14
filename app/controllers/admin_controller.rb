@@ -7,8 +7,9 @@ class AdminController < ApplicationController
   end
   
   def news_managment  
-  	@news = News.all
+  	@news = News.all  	
     respond_to do |format|
+    	
       format.html # index.html.erb
       format.xml  { render :xml => @news }
     end

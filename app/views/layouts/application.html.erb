@@ -84,6 +84,11 @@
                           <li>
                             <%= link_to "My account", edit_user_path(user)%>
                           </li>
+                          <% if is_admin_logged%>
+	                          <li>
+	                          	<%= link_to "Admin Panel", admin_path%>
+	                          </li>
+	                          <% end%>
                         </ul>
                       </div>
                     </li>
@@ -133,6 +138,11 @@
                           <li>
                             <%= link_to "Moje konto", edit_user_path(user)%>
                           </li>
+                          <% if is_admin_logged%>
+	                          <li>
+	                          	<%= link_to "Panel Administracyjny", admin_path%>
+	                          </li>
+	                     <% end%>
                         </ul>
                       </div>
                     </li>
