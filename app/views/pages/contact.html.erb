@@ -12,7 +12,13 @@
     var marker = new google.maps.Marker({map: map, position:
         map.getCenter()});
     var infowindow = new google.maps.InfoWindow();
-    infowindow.setContent('<b>Tu jesteśmy!</b>');
+    
+      <% if is_english_language %>
+          infowindow.setContent('<b>Here we are!</b>');
+      <% else %>
+          infowindow.setContent('<b>Tu jesteśmy!</b>');
+      <% end %>
+
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map, marker);
     });
