@@ -21,13 +21,16 @@
     <% end %>
   </p>
 
+  <% if is_admin_logged %>
   <p>
     <b>Privilegeslevel:</b>
     <%= @user.privilegesLevel %>
   </p>
+  <% end %>
 
-
-  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <% if is_admin_logged %>
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+  <% end %>
   <%= link_to 'Back', root_path %>
 
 <% else %>
@@ -52,11 +55,15 @@
     <% end %>
   </p>
 
+  <% if is_admin_logged %>
   <p>
     <b>Poziom uprawnień:</b>
     <%= @user.privilegesLevel %>
   </p>
+  <% end %>
 
-  <%= link_to 'Edytuj', edit_user_path(@user) %> |
+  <% if is_admin_logged %>
+    <%= link_to 'Edytuj', edit_user_path(@user) %> |
+  <% end %>
   <%= link_to 'Wróć', root_url %>
 <% end %>

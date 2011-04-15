@@ -1,30 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="post">
+  <% if is_english_language%>
 
-<p>
-  <b>Posted:</b>
-  <%= @news.posted %>
-</p>
+    <h2 class="title"> <%= @news.englishSubject %>  </h2><br />
+    <p class="meta">
+      <span class="date"><%= @news.posted.to_s[0..18] %></span>
+      <%  user = User.find(@news.user_id) %>
+      <span class="posted">Posted by <%= link_to user.username, user %></span>
+    </p>
+    <div style="clear: both;">&nbsp;</div>
+    <div class="entry">
+      <p><%=  @news.englishNews %></p>
+      <p class="links">
+          <a href="#">Comments</a> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% if is_admin_logged %>
+            <%= link_to 'Edit', edit_news_path(@news) %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% end %>
+          <%= link_to 'Back', root_path %>
+      </p>
+    </div>
 
-<p>
-  <b>Polishsubject:</b>
-  <%= @news.polishSubject %>
-</p>
+  <%  else %>
 
-<p>
-  <b>Polishnews:</b>
-  <%= @news.polishNews %>
-</p>
+    <h2 class="title"> <%= @news.polishSubject %>  </h2><br />
+    <p class="meta">
+      <span class="date"><%= @news.posted.to_s[0..18] %></span>
+      <%  user = User.find(@news.user_id) %>
+      <span class="posted">Autor <%= link_to user.username, user %></span>
+    </p>
+    <div style="clear: both;">&nbsp;</div>
+    <div class="entry">
+      <p><%=  @news.polishNews %></p>
+      <p class="links">
+          <a href="#">Komentarze</a> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% if is_admin_logged%>
+            <%= link_to 'Edytuj', edit_news_path(@news) %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% end %>
+          <%= link_to 'Wróć', root_path %>
+      </p>
+    </div>
 
-<p>
-  <b>Englishsubject:</b>
-  <%= @news.englishSubject %>
-</p>
-
-<p>
-  <b>Englishnews:</b>
-  <%= @news.englishNews %>
-</p>
+  <% end %>
+</div>
 
 
-<%= link_to 'Edit', edit_news_path(@news) %> |
-<%= link_to 'Back', news_index_path %>
+

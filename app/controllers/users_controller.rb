@@ -17,25 +17,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.xml
-  def show
-  	if(is_admin_logged)
-  		@user = User.find(params[:id])
-  	else
-  		if(session[:current_user_id])
-    	if(session[:current_user_id] == params[:id])
-	    	@user = User.find(session[:current_user_id])
-	    	respond_to do |format|
-		      format.html # show.html.erb
-		      format.xml  { render :xml => @user }
-		    end
-		else
-		  	redirect_to root_url
-		end
-	else
-	   	redirect_to root_url
-	end
-  	end
-    
+  def show	
+  		@user = User.find(params[:id])   
   end
 
   # GET /users/new
@@ -53,9 +36,9 @@ class UsersController < ApplicationController
   def edit
   	if(is_admin_logged)
   		@user = User.find(params[:id])
-  	else  		
+  	else
 	  	if(session[:current_user_id])
-	  		if(session[:current_user_id] == params[:id])
+	  		if(session[:current_user_id].to_s == params[:id].to_s)
 	    		@user = User.find(session[:current_user_id])
 	    	else
 	    		redirect_to root_url

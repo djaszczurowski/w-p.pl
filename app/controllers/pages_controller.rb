@@ -4,7 +4,14 @@ class PagesController < ApplicationController
 	#before_filter :authenticate_admin, :only => :admin
   helper_method :admin_panel
   def home
-  	@title = "Strona Główna";
+    @date_length = 18
+    @news_length = 40
+  	@title = "Strona Główna"
+    @news = News.all
+  	respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @news }
+    end
   end
 
   def about

@@ -1,2 +1,57 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="post">
+  <% @news.each do |news| %>
+
+    <% if is_english_language%>
+
+      <h2 class="title"> <%= news.englishSubject %>  </h2>
+      <p class="meta">
+        <span class="date"><%= news.posted.to_s[0..@date_length] %></span>
+        <%  user = User.find(news.user_id) %>
+        <span class="posted">Posted by <%= link_to user.username, user %></span>
+      </p>
+      <div style="clear: both;">&nbsp;</div>
+      <div class="entry">
+        <% text = news.englishNews.split(" ") %>
+        <p>
+          <% for i in 0...@news_length %>
+            <%= text[i].to_s + " " %>
+          <% end %>
+        <% if text.length > @news_length %>
+          ...
+        <% end %>
+        </p>
+        <p class="links">
+          <%= link_to "Read more", news %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">Comments</a>
+        </p>
+      </div>
+
+    <%  else %>
+
+      <h2 class="title"> <%= news.polishSubject %>  </h2>
+      <p class="meta">
+        <span class="date"><%= news.posted.to_s[0..@date_length] %></span>
+        <%  user = User.find(news.user_id) %>
+        <span class="posted">Autor <%= link_to user.username, user %></span>
+      </p>
+      <div style="clear: both;">&nbsp;</div>
+      <div class="entry">
+        <% text = news.polishNews.split(" ") %>
+        <p>
+          <% for i in 0...@news_length %>
+            <%= text[i].to_s + " " %>
+          <% end %>
+        <% if text.length > @news_length %>
+          ...
+        <% end %>
+        </p>
+        <p class="links">
+          <%= link_to "Czytaj dalej", news %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">Komentarze</a>
+        </p>
+      </div>
+
+    <% end %>
+
+  <% end %>
+</div>
