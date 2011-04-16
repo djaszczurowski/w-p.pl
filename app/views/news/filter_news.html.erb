@@ -1,0 +1,46 @@
+<% @news.each do |news| %>
+  <div class="post">
+    <% if is_english_language%>
+
+      <h2 class="title"> <%= news.englishSubject %>  </h2><br />
+      <p class="meta">
+        <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
+        <%  user = User.find(news.user_id) %>
+        <span class="posted">Posted by <%= link_to user.username, user %></span>
+      </p>
+      <div style="clear: both;">&nbsp;</div>
+      <div class="entry">
+        <p><%=  news.englishNews %></p>
+        <p class="links">
+          <a href="#">Comments</a>
+          <% if is_admin_logged %>
+            | <%= link_to 'Edit', edit_news_path(news) %>
+          <% end %>
+        </p>
+      </div>
+
+    <%  else %>
+
+      <h2 class="title"> <%= news.polishSubject %>  </h2><br />
+      <p class="meta">
+        <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
+        <%  user = User.find(news.user_id) %>
+        <span class="posted">Autor <%= link_to user.username, user %></span>
+      </p>
+      <div style="clear: both;">&nbsp;</div>
+      <div class="entry">
+        <p><%=  news.polishNews %></p>
+        <p class="links">
+          <a href="#">Komentarze</a>
+          <% if is_admin_logged%>
+            | <%= link_to 'Edytuj', edit_news_path(news) %>
+          <% end %>
+        </p>
+      </div>
+
+    <% end %>
+  </div>
+<% end %>
+
+
+

@@ -1,9 +1,17 @@
-# encoding: utf-8
 class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.xml
   def index
     @comments = Comment.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @comments }
+    end
+  end
+
+  def filter_comments
+    @comments = Comment.where(:user_id => params[:id])
 
     respond_to do |format|
       format.html # index.html.erb

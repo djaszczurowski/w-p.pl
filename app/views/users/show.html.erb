@@ -13,12 +13,32 @@
 
   <p>
     <b>Avatar:</b>
-    <%= @user.avatar %>
     <% if @user.avatar? %>
       <%= image_tag(@user.avatar, :size => "64x64") %>
     <% else %>
       <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
     <% end %>
+  </p>
+
+  <p>
+    <b>News:</b>
+    <%= News.where(:user_id => @user.user_id).size %><br/>
+    <%= link_to 'Show last', News.where(:user_id => @user.user_id).last %> |
+    <%= link_to 'Show all',  filter_news_path(@user.user_id) %>
+  </p>
+
+  <p>
+    <b>Postulates:</b>
+    <%= Postulate.where(:user_id => @user.user_id).size %><br/>
+    <%= link_to 'Show last', Postulate.where(:user_id => @user.user_id).last %> |
+    <%= link_to 'Show all',  filter_postulates_path(@user.user_id) %>
+  </p>
+
+  <p>
+    <b>Comments:</b>
+    <%= Comment.where(:user_id => @user.user_id).size %><br/>
+    <%= link_to 'Show last', Comment.where(:user_id => @user.user_id).last %> |
+    <%= link_to 'Show all',  filter_comments_path(@user.user_id) %>
   </p>
 
   <% if is_admin_logged %>
@@ -29,9 +49,8 @@
   <% end %>
 
   <% if is_admin_logged %>
-    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Edit', edit_user_path(@user) %>
   <% end %>
-  <%= link_to 'Back', root_path %>
 
 <% else %>
 
@@ -47,12 +66,32 @@
 
   <p>
     <b>Avatar:</b>
-    <%= @user.avatar %>
     <% if @user.avatar? %>
       <%= image_tag(@user.avatar, :size => "64x64") %>
     <% else %>
       <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
     <% end %>
+  </p>
+
+  <p>
+    <b>News'ów:</b>
+    <%= News.where(:user_id => @user.user_id).size %><br />
+    <%= link_to 'Pokaż ostatni', News.where(:user_id => @user.user_id).last %> |
+    <%= link_to 'Pokaż wszystkie',  filter_news_path(@user.user_id) %>
+  </p>
+
+  <p>
+    <b>Postulaty:</b>
+    <%= Postulate.where(:user_id => @user.user_id).size %><br />
+    <%= link_to 'Pokaż ostatni', Postulate.where(:user_id => @user.user_id).last %> |
+    <%= link_to 'Pokaż wszystkie',  filter_postulates_path(@user.user_id) %>
+  </p>
+
+  <p>
+    <b>Komentarze:</b>
+    <%= Comment.where(:user_id => @user.user_id).size %><br />
+    <%= link_to 'Pokaż ostatni', Comment.where(:user_id => @user.user_id).last %> |
+    <%= link_to 'Pokaż wszystkie',  filter_comments_path(@user.user_id) %>
   </p>
 
   <% if is_admin_logged %>
@@ -63,7 +102,6 @@
   <% end %>
 
   <% if is_admin_logged %>
-    <%= link_to 'Edytuj', edit_user_path(@user) %> |
+    <%= link_to 'Edytuj', edit_user_path(@user) %>
   <% end %>
-  <%= link_to 'Wróć', root_url %>
 <% end %>

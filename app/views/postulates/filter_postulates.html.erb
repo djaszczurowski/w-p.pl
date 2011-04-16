@@ -1,0 +1,18 @@
+<% @postulates.each do |postulate| %>
+
+  <%  @postulate = postulate %>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <b>Uniformlink:</b>
+    <%= @postulate.uniformLink %>
+  </p>
+
+  <p>
+    <b>Commentary:</b>
+    <%= @postulate.commentary %>
+  </p>
+
+  <%= link_to 'Edit', edit_postulate_path(@postulate) %> 
+
+<% end %>

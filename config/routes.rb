@@ -1,5 +1,7 @@
 WPPl::Application.routes.draw do
   
+  resources :comments
+
   get "admin/news_managment"
 
   get "admin/users_managment"
@@ -20,6 +22,9 @@ WPPl::Application.routes.draw do
   match "/language" => "application#change_language", :as => "change_language"
   match "/admin/postulates_managment" => "postulates#index", :as => "postulates_managment"
   match "/admin/postulates" => "postulates#index", :as => "postulates_managment"
+  match "/users/:id/news" => "news#filter_news", :as => "filter_news"
+  match "/users/:id/postulates" => "postulates#filter_postulates", :as => "filter_postulates"
+  match "/users/:id/comments" => "comments#filter_comments", :as => "filter_comments"
   resources :admins
   resources :pages
   resources :sessions
@@ -29,13 +34,12 @@ WPPl::Application.routes.draw do
 
   resources :categories
 
-  resources :comments
-
   resources :news
 
   resources :users do
+   resources :postulates
    resources :comments
-   #resources :news
+   resources :news
   end
 
   #map.users '/users', :controller => 'user'

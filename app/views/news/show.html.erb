@@ -11,11 +11,10 @@
     <div class="entry">
       <p><%=  @news.englishNews %></p>
       <p class="links">
-          <a href="#">Comments</a> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">Comments</a> 
           <% if is_admin_logged %>
-            <%= link_to 'Edit', edit_news_path(@news) %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            | <%= link_to 'Edit', edit_news_path(@news) %>
           <% end %>
-          <%= link_to 'Back', root_path %>
       </p>
     </div>
 
@@ -31,11 +30,10 @@
     <div class="entry">
       <p><%=  @news.polishNews %></p>
       <p class="links">
-          <a href="#">Komentarze</a> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">Komentarze</a> 
           <% if is_admin_logged%>
-            <%= link_to 'Edytuj', edit_news_path(@news) %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+            | <%= link_to 'Edytuj', edit_news_path(@news) %>
           <% end %>
-          <%= link_to 'Wróć', root_path %>
       </p>
     </div>
 

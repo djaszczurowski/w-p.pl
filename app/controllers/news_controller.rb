@@ -14,6 +14,15 @@ class NewsController < ApplicationController
 
   # GET /news/1
   # GET /news/1.xml
+  def filter_news
+    @news = News.where(:user_id => params[:id])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @news }
+    end
+  end
+
   def show
     @news = News.find(params[:id])
 
