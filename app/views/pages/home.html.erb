@@ -5,7 +5,7 @@
 
       <h2 class="title"> <%= news.englishSubject %>  </h2>
       <p class="meta">
-        <span class="date"><%= news.posted.to_s[0..@date_length] %></span>
+        <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
         <%  user = User.find(news.user_id) %>
         <span class="posted">Posted by <%= link_to user.username, user %></span>
       </p>
@@ -30,7 +30,7 @@
 
       <h2 class="title"> <%= news.polishSubject %>  </h2>
       <p class="meta">
-        <span class="date"><%= news.posted.to_s[0..@date_length] %></span>
+        <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
         <%  user = User.find(news.user_id) %>
         <span class="posted">Autor <%= link_to user.username, user %></span>
       </p>

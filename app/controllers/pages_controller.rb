@@ -7,6 +7,7 @@ class PagesController < ApplicationController
   @@pl_titles = ["Strona Główna", "O nas", "Archiwum", "Postulaty", "Kontakt"]
   @@eng_titles = ["Main", "About", "Archive", "Postulates", "Contact"]
   @@page_links = ["home", "about", "archive", "postulates", "contact"]
+  @@date_length = 18
 
   def self.pl_titles
     @@pl_titles
@@ -20,9 +21,12 @@ class PagesController < ApplicationController
     @@page_links
   end
 
+  def self.date_length
+    @@date_length
+  end
+
   def home
     @current_page = "Main"
-    @date_length = 18
     @news_length = 40
   	@title = "Strona Główna"
     @news = News.all
