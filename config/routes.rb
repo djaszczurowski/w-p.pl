@@ -46,6 +46,7 @@ WPPl::Application.routes.draw do
   match "/archive", :to => 'pages#archive', :as => 'archive'
   match "/postulates", :to => 'pages#postulates', :as => 'postulates'
   match "/contact", :to => 'pages#contact', :as => 'contact'
+  match "/home", :to => 'pages#home', :as => 'home'
   #match "/admin", :to => 'admin#new', :as => "admin_log"
 
   # The priority is based upon order of creation:

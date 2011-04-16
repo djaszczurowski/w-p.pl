@@ -3,7 +3,25 @@ class PagesController < ApplicationController
  
 	#before_filter :authenticate_admin, :only => :admin
   helper_method :admin_panel
+
+  @@pl_titles = ["Strona Główna", "O nas", "Archiwum", "Postulaty", "Kontakt"]
+  @@eng_titles = ["Main", "About", "Archive", "Postulates", "Contact"]
+  @@page_links = ["home", "about", "archive", "postulates", "contact"]
+
+  def self.pl_titles
+    @@pl_titles
+  end
+
+  def self.eng_titles
+    @@eng_titles
+  end
+
+  def self.page_links
+    @@page_links
+  end
+
   def home
+    @current_page = "Main"
     @date_length = 18
     @news_length = 40
   	@title = "Strona Główna"
@@ -15,14 +33,17 @@ class PagesController < ApplicationController
   end
 
   def about
+    @current_page = "About"
   	@title = "O nas"
   end
 
   def archive
+    @current_page = "Archive"
   	@title = "Archiwum"
   end
 
   def postulates
+    @current_page = "Postulates"
   	@postulates = Postulate.all
   	respond_to do |format|
       format.html # index.html.erb
@@ -31,6 +52,7 @@ class PagesController < ApplicationController
   end
 
   def contact
+    @current_page = "Contact"
   	@title = "Kontakt"
   end  
 	

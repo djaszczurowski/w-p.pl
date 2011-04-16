@@ -17,11 +17,13 @@
 
           <div id="menu">
             <ul>
-              <li><%= link_to "Main", root_url%></li>
-              <li><%= link_to "About", about_url%></li>
-              <li><%= link_to "Archive", archive_url%></li>
-              <li><%= link_to "Postulates", postulates_path%></li>
-              <li><%= link_to "Contact", contact_url%></li>
+              <% for i in 0...PagesController.eng_titles.length %>
+                <% if @current_page ==  PagesController.eng_titles[i] %>
+                  <li class="current_page_item"><%= link_to PagesController.eng_titles[i], PagesController.page_links[i] %></li>
+                <% else %>
+                  <li><%= link_to PagesController.eng_titles[i], PagesController.page_links[i] %></li>
+                <% end %>
+              <% end %>
             </ul>
           </div>
         <% end%>
@@ -34,11 +36,13 @@
 
           <div id="menu">
             <ul>
-              <li><%= link_to "Główna", root_url%></li>
-              <li><%= link_to "O nas", about_url%></li>
-              <li><%= link_to "Archiwum", archive_url%></li>
-              <li><%= link_to "Postulaty", postulates_path%></li>
-              <li><%= link_to "Kontakt", contact_url%></li>
+              <% for i in 0...PagesController.pl_titles.length %>
+                <% if @current_page ==  PagesController.eng_titles[i] %>
+                  <li class="current_page_item"><%= link_to PagesController.pl_titles[i], PagesController.page_links[i] %></li>
+                <% else %>
+                  <li><%= link_to PagesController.pl_titles[i], PagesController.page_links[i] %></li>
+                <% end %>
+              <% end %>
             </ul>
           </div>
         <% end%>
