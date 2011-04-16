@@ -358,6 +358,7 @@ a:hover {
 
 #footer {
 	height: 50px;
+        width: 980px;
 	margin: 0 auto;
 	padding: 0px 0 15px 0;
 	background: #ECECEC;
