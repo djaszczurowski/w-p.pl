@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
   @@pl_titles = ["Strona Główna", "O nas", "Archiwum", "Postulaty", "Kontakt"]
   @@eng_titles = ["Main", "About", "Archive", "Postulates", "Contact"]
-  @@page_links = ["home", "about", "archive", "postulates", "contact"]
+  @@page_links = ["/home", "/about", "/archive", "/postulates", "/contact"]
   @@date_length = 18
 
   def self.pl_titles
