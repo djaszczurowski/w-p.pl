@@ -49,7 +49,7 @@
   <% end %>
 
   <% if is_admin_logged %>
-    <%= link_to 'Edit', edit_user_path(@user) %>
+    <%= link_to 'Edit', edit_user_by_admin_path(@user) %>
   <% end %>
 
 <% else %>
@@ -102,6 +102,6 @@
   <% end %>
 
   <% if is_admin_logged %>
-    <%= link_to 'Edytuj', edit_user_path(@user) %>
+    <%= link_to 'Edytuj', edit_user_by_admin_path(@user) %>
   <% end %>
 <% end %>

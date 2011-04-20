@@ -6,6 +6,7 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+#gem 'ruby-mysql'
 gem 'bcrypt-ruby', :require => "bcrypt"
 
 #group :development do

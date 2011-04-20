@@ -8,7 +8,16 @@ class ApplicationController < ActionController::Base
   helper_method :is_admin_logged
   helper_method :is_english_language
   helper_method :change_language
-
+  helper_method :layout_sort
+	
+  def layout_sort
+  	if(is_admin_logged)
+  		"admin_panel"
+  	else
+  		"application"
+  	end
+  end	
+	
   def is_admin_logged
   	if session[:current_user_id]
   		user = User.find(session[:current_user_id])

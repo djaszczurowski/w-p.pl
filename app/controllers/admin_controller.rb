@@ -6,6 +6,10 @@ class AdminController < ApplicationController
   	
   end
   
+  def news
+  	
+  end
+  
   def news_managment  
   	@news = News.all  	
     respond_to do |format|
@@ -35,8 +39,7 @@ class AdminController < ApplicationController
   end
   
   def admin_panel  	
-  	@admin_panel = true
-  	@title = "Panel Administracyjny"
+  	@admin_panel = true  	
   end
   
   def create  	

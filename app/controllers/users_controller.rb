@@ -1,5 +1,8 @@
 # encoding: utf-8
 class UsersController < ApplicationController
+  
+  layout :layout_sort
+  
   # GET /users
   # GET /users.xml
   def index
@@ -32,6 +35,17 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/new
+  # GET /users/new.xml
+  def new_by_admin
+    @user = User.new
+	
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @user }
+    end
+  end
+
   # GET /users/1/edit
   def edit
   	if(is_admin_logged)
@@ -49,6 +63,22 @@ class UsersController < ApplicationController
 	end
   end
 
+	def edit_by_admin
+  	if(is_admin_logged)
+  		@user = User.find(params[:id])
+  		
+  	else
+	  	if(session[:current_user_id])
+	  		if(session[:current_user_id].to_s == params[:id].to_s)
+	    		@user = User.find(session[:current_user_id])
+	    	else
+	    		redirect_to root_url
+	    	end
+	   else
+	   		redirect_to root_url
+	   	end	  
+	end
+  end
   # POST /users
   # POST /users.xml
   def create

@@ -1,5 +1,7 @@
 # encoding: utf-8
 class PostulatesController < ApplicationController
+	layout :layout_sort
+	before_filter :is_admin_logged, :only => :edit
   # GET /postulates
   # GET /postulates.xml
   def index

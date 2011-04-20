@@ -1,56 +1,72 @@
-WPPl::Application.routes.draw do
-  
-  resources :comments
-
-  get "admin/news_managment"
-
-  get "admin/users_managment"
-
-  get "admin/postulates_managment"
-  match "/postulaty" => "pages#postulates", :as => 'postulates'
-  match "/postulates" => "pages#postulates", :as => 'postulates'
-  match "/loguj" => "sessions#new", :as => 'login'
-  match '/wyloguj' => "sessions#destroy", :as => 'logout'
-  match "/rejestruj" => "users#new", :as => 'register'
-  #match "/edytuj" => "users#edit", :as => "edit_account"
-  #match "/admin_panel" => "pages#admin_panel", :as => 'admin_panel'
-  #match "/admin_panel/news_managment" => "pages#news_managment", :as  => 'news_managment'
-  match "/admin" => "pages#admin_log", :as => 'admin'
-  match "admin/news_managment" => "admin#news_managment", :as => "news_managment"
-  match "admin/users_managment" => "admin#users_managment", :as => "users_managment"
-  match "admin/postulates_managment" => "admin#postulates_managment", :as => "postulates_managment"
-  match "/language" => "application#change_language", :as => "change_language"
-  match "/admin/postulates_managment" => "postulates#index", :as => "postulates_managment"
-  match "/admin/postulates" => "postulates#index", :as => "postulates_managment"
-  match "/users/:id/news" => "news#filter_news", :as => "filter_news"
-  match "/users/:id/postulates" => "postulates#filter_postulates", :as => "filter_postulates"
-  match "/users/:id/comments" => "comments#filter_comments", :as => "filter_comments"
-  resources :admins
-  resources :pages
-  resources :sessions
-  resources :users
+WPPl::Application.routes.draw do 
+  # HOME PAGE ACTIONS
+   	  # postulates
+   	  match "/postulaty" => "pages#postulates", :as => 'postulates'
+  	  match "/postulates" => "pages#postulates", :as => 'postulates'
  
-  resources :postulates
-
-  resources :categories
-
-  resources :news
-
-  resources :users do
-   resources :postulates
-   resources :comments
-   resources :news
-  end
-
-  #map.users '/users', :controller => 'user'
-  root :to => 'pages#home'
+ 	  # about
+ 	  match "/about", :to => 'pages#about', :as => 'about'
+  
+  	  # archive
+  	  match "/archive", :to => 'pages#archive', :as => 'archive'
+  		
+  	  # contact
+  	  match "/contact", :to => 'pages#contact', :as => 'contact'  		
+  
+  # ROOT 
+   	  root :to => 'pages#home'  
+  	  match "/home" => "pages#home"	
+  # LANGUAGE ACTION
+  	  match "/language" => "application#change_language", :as => "change_language"
+  
+  # USER ACTIONS 
+	  # login & register
+	  match "/loguj" => "sessions#new", :as => 'login'
+	  match '/wyloguj' => "sessions#destroy", :as => 'logout'
+	  match "/rejestruj" => "users#new", :as => 'register'
+	  	
+	  # user stats
+	  match "/users/:id/news" => "news#filter_news", :as => "filter_news"
+	  match "/users/:id/postulates" => "postulates#filter_postulates", :as => "filter_postulates"
+	  match "/users/:id/comments" => "comments#filter_comments", :as => "filter_comments"
+  
+  # ADMIN ACTIONS 
+  	  # admin login
+	  match "/admin" => "pages#admin_log", :as => 'admin'  
+	  
+	  # admin news_managment section
+	  match "admin/news" => "news#index", :as => "news_managment"
+	  match "admin/news/:id/edit" => "news#edit", :as => "edit_news"
+	  match "admin/news/new" => "news#new", :as => "new_news"
+	  
+	  # admin users_managment section
+	  match "admin/users" => "users#index", :as => "users_managment"
+	  match "admin/users/:id/edit" => "users#edit_by_admin", :as => "edit_user_by_admin"
+	  match "admin/users/new" => "users#new", :as => "new_user"
+	  
+	  # admin postulates_managment section
+	  match "admin/postulates" => "postulates#index", :as => "postulates_managment"
+	  match "amdin/postulates/:id/edit" => "postulates#edit", :as => "edit_postulate" 
+	  match "admin/postulates/new" => "postulates#new", :as => "new_postulate"
+   
+   # RESOURCES - TO MODIFY
+	  resources :pages
+	  resources :sessions
+	  resources :users
+	  resources :comments
+	  resources :postulates
+	  resources :categories
+	  resources :news
+	  resources :users do
+	   resources :postulates
+	   resources :comments
+	   resources :news
+	  end
+	  
+  
  
   
-  match "/about", :to => 'pages#about', :as => 'about'
-  match "/archive", :to => 'pages#archive', :as => 'archive'
-  match "/postulates", :to => 'pages#postulates', :as => 'postulates'
-  match "/contact", :to => 'pages#contact', :as => 'contact'
-  match "/home", :to => 'pages#home', :as => 'home'
+  
   #match "/admin", :to => 'admin#new', :as => "admin_log"
 
   # The priority is based upon order of creation:

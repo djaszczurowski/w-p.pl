@@ -1,6 +1,6 @@
 # encoding: utf-8
 class NewsController < ApplicationController
-	
+	layout :layout_sort
   # GET /news
   # GET /news.xml
   def index
@@ -108,4 +108,13 @@ class NewsController < ApplicationController
 	 	redirect_to root_url	 	
 	 end
   end
+  
+  #private 
+  #def news_layout
+  	#if(is_admin_logged)
+  	#	"admin_panel"
+  	#else
+  	#	"application"
+  	#end
+  #end
 end

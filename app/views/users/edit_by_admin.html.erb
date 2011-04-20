@@ -1,0 +1,25 @@
+<%= form_for(@user) do |f| %>
+   
+    <div class="field">
+      <%= f.label "Użytkownik" %><br />
+      <%= f.text_field :username %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :avatar %><br />
+      <%= f.text_field :avatar %>
+    </div>
+   <div class="field">
+      <%= f.label "Poziom uprawnień" %><br />
+      <%= f.text_field :privilegesLevel %>
+    </div>
+    <div class="actions"><br />
+      <%= f.submit "Zapisz"%>
+    </div>
+    
+    <%= link_to "Zbanuj użytkownika", root_url%>
+ <% end %>
+  

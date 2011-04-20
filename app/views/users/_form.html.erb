@@ -33,6 +33,10 @@
       <%= f.label :password_confirmation%><br/>
       <%= f.password_field :password_confirmation%>
     </div>
+    <%if is_admin_logged%>
+	  	<%= f.label "Privileges Level" %><br />
+	    <%= f.text_field :privilegesLevel %>
+  <% end%>
     <div class="actions"><br />
       <%= f.submit %>
     </div>
@@ -73,6 +77,10 @@
       <%= f.label "Powtórz hasło" %><br/>
       <%= f.password_field :password_confirmation%>
     </div>
+    <%if is_admin_logged%>
+	  	<%= f.label "Poziom uprawnień" %><br />
+	    <%= f.text_field :privilegesLevel %>
+  <% end%>
     <div class="actions"><br />
       <%= f.submit "Zapisz"%>
     </div>
