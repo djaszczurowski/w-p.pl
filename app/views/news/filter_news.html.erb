@@ -1,4 +1,4 @@
-<% @news.each do |news| %>
+<% @news.reverse.each do |news| %>
   <div class="post">
     <% if is_english_language%>
 
@@ -32,7 +32,7 @@
         <p><%=  news.polishNews %></p>
         <p class="links">
           <a href="#">Komentarze</a>
-          <% if is_admin_logged%>
+          <% if is_admin_logged %>
             | <%= link_to 'Edytuj', edit_news_path(news) %>
           <% end %>
         </p>

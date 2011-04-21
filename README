@@ -5,3 +5,8 @@ najlepiej samemu sprawdzic wchodzac na w-p.heroku.com/categories
 Adres ponizej zawiera cenne informacje o tworzeniu galezi i pracy na nich. Podaje bo moze nie wszyscy jeszcze
 czytali:
 http://gitref.org/branching/#branch
+
+
+TODO
+# poszukać lepszego strip slashera dla nowych komentarzy
+# poprawić logowanie - nie powinno zawsze przekierowywać do root'a

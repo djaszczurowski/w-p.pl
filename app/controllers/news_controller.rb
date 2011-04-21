@@ -1,5 +1,52 @@
 # encoding: utf-8
 class NewsController < ApplicationController
+  include ActionView::Helpers::SanitizeHelper
+
+  helper_method :change_is_showing_comments
+  helper_method :is_showing_comments
+
+  def show_comments
+    cookies[:comm] = "yes"
+    redirect_to "/news/" + params[:id] + "#comments_begin"
+  end
+
+  def hide_comments
+    cookies[:comm] = "no"
+    redirect_to "/news/" + params[:id]
+  end
+
+  def change_is_showing_comments
+    if cookies[:comm] == "yes"
+      cookies[:comm] = "no"
+      redirect_to "/news/" + params[:id]
+    else
+      cookies[:comm] = "yes"
+      redirect_to "/news/" + params[:id] + "#comments_begin"
+    end
+  end
+
+  def is_showing_comments
+    return cookies[:comm] == "yes"
+  end
+
+  def add_comment
+    if !params[:title].to_s.blank? && !params[:content].to_s.blank? 
+      @comment = Comment.new
+
+      @comment.user_id = session[:current_user_id]
+      @comment.news_id = params[:id]
+      @comment.posted = Time.now()
+      @comment.subject = params[:title]
+      @comment.comment  = strip_tags(params[:content].to_s) #poszukać czegoś lepszego, ten usuwa wszystko :/
+
+      @comment.save
+    else
+
+    end
+    cookies[:comm] = "yes"
+    redirect_to "/news/" + params[:id] + "#comments_begin"
+  end
+
 	layout :layout_sort
   # GET /news
   # GET /news.xml

@@ -21,8 +21,10 @@
         <% end %>
         </p>
         <p class="links">
-          <%= link_to "Read more", news %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#">Comments</a>
+          <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+          <%= link_to "Read more", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+          <%= link_to "Comments", link_path2 %> 
         </p>
       </div>
 
@@ -46,8 +48,10 @@
         <% end %>
         </p>
         <p class="links">
-          <%= link_to "Czytaj dalej", news %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#">Komentarze</a>
+          <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+          <%= link_to "Czytaj dalej", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+          <%= link_to "Komentarze", link_path2 %> 
         </p>
       </div>
 

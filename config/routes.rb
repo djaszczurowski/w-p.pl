@@ -18,7 +18,14 @@ WPPl::Application.routes.draw do
   	  match "/home" => "pages#home"	
   # LANGUAGE ACTION
   	  match "/language" => "application#change_language", :as => "change_language"
-  
+
+  # NEWS ACTIONS
+  	  match "/news/:id/comments" => "news#change_is_showing_comments", :as => "change_is_showing_comments"
+      match "/news/:id/is_showing_comments" => "news#is_showing_comments", :as => "is_showing_comments"
+      match "/news/:id/show_comments" => "news#show_comments", :as => "show_comments"
+      match "/news/:id/hide_comments" => "news#hide_comments", :as => "hide_comments"
+      match "/news/:id/add_comment" => "news#add_comment", :as => "add_comment"
+
   # USER ACTIONS 
 	  # login & register
 	  match "/loguj" => "sessions#new", :as => 'login'
@@ -56,7 +63,9 @@ WPPl::Application.routes.draw do
 	  resources :comments
 	  resources :postulates
 	  resources :categories
-	  resources :news
+	  resources :news do
+      resources :comments
+    end
 	  resources :users do
 	   resources :postulates
 	   resources :comments

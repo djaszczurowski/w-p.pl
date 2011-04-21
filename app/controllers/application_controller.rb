@@ -26,14 +26,14 @@ class ApplicationController < ActionController::Base
   		false
   	end
   end
-
+  
   def change_language
     if is_english_language
       cookies[:lang] = "pl"
     else
       cookies[:lang] = "en"
     end
-    redirect_to root_url
+    redirect_to :back
   end
   
   def admin_panel  	

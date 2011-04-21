@@ -4,9 +4,9 @@ class SessionsController < ApplicationController
   end
     
   def destroy  
-	session[:current_user_id] = nil
-	session[:log_as_admin] = false;
-	redirect_to root_url, :notice => "Wylogowano!"
+    session[:current_user_id] = nil
+    session[:log_as_admin] = false;
+    redirect_to root_url, :notice => "Wylogowano!"
   end
 	
   def create  	
