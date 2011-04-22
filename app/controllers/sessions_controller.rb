@@ -21,11 +21,11 @@ class SessionsController < ApplicationController
 				end
 			else
 				sign_in(user)					
-				redirect_to root_url, :notice => 'Zalogowany'
+				redirect_to :back, :notice => 'Zalogowany'
 			end
 		else
-			flash.now[:error] = "Niepoprawne haslo lub login"			
-			render "new"
+      flash.now[:error] = "Niepoprawne haslo lub login"			
+			redirect_to :back, :notice => 'Niepoprawne haslo lub login'
 		end
   end
   
