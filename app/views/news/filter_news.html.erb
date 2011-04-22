@@ -10,9 +10,20 @@
       </p>
       <div style="clear: both;">&nbsp;</div>
       <div class="entry">
-        <p><%=  news.englishNews %></p>
+        <% text = news.englishNews.split(" ") %>
+        <p>
+          <% for i in 0...PagesController.news_length %>
+            <%= text[i].to_s + " " %>
+          <% end %>
+        <% if text.length > PagesController.news_length %>
+          ...
+        <% end %>
+        </p>
         <p class="links">
-          <a href="#">Comments</a>
+          <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+          <%= link_to "Read more", link_path1 %> |
+          <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+          <%= link_to "Comments", link_path2 %>
           <% if is_admin_logged %>
             | <%= link_to 'Edit', edit_news_path(news) %>
           <% end %>
@@ -29,9 +40,20 @@
       </p>
       <div style="clear: both;">&nbsp;</div>
       <div class="entry">
-        <p><%=  news.polishNews %></p>
+        <% text = news.polishNews.split(" ") %>
+        <p>
+          <% for i in 0...PagesController.news_length %>
+            <%= text[i].to_s + " " %>
+          <% end %>
+        <% if text.length > PagesController.news_length %>
+          ...
+        <% end %>
+        </p>
         <p class="links">
-          <a href="#">Komentarze</a>
+          <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+          <%= link_to "Czytaj dalej", link_path1 %> |
+          <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+          <%= link_to "Komentarze", link_path2 %> 
           <% if is_admin_logged %>
             | <%= link_to 'Edytuj', edit_news_path(news) %>
           <% end %>

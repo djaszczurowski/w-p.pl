@@ -72,7 +72,7 @@
                     <% if current_user%>
                       <div id="sign_in_out_panel">
                         <%  user = User.find(current_user) %>
-                        <h2>Welcome <a href="#"> <%= user.username%></a></h2>
+                        <h2>Welcome <%= link_to user.username, user %></h2>
                         <ul>
                           <li>
                             <% if user.avatar? %>
@@ -126,7 +126,7 @@
                     <% if current_user %>
                       <div id="sign_in_out_panel">
                         <%  user = User.find(current_user) %>
-                        <h2>Witaj <a href="#"> <%= user.username%></a></h2>
+                        <h2>Witaj <%= link_to user.username, user %></h2>
                         <ul>
                           <li>
                             <% if user.avatar? %>

@@ -13,10 +13,10 @@
       <div class="entry">
         <% text = news.englishNews.split(" ") %>
         <p>
-          <% for i in 0...@news_length %>
+          <% for i in 0...PagesController.news_length %>
             <%= text[i].to_s + " " %>
           <% end %>
-        <% if text.length > @news_length %>
+        <% if text.length > PagesController.news_length %>
           ...
         <% end %>
         </p>
@@ -40,10 +40,10 @@
       <div class="entry">
         <% text = news.polishNews.split(" ") %>
         <p>
-          <% for i in 0...@news_length %>
+          <% for i in 0...PagesController.news_length %>
             <%= text[i].to_s + " " %>
           <% end %>
-        <% if text.length > @news_length %>
+        <% if text.length > PagesController.news_length %>
           ...
         <% end %>
         </p>
