@@ -42,7 +42,7 @@ tinyMCE.init({
           <% link_name = "Comments (" + Comment.where(:news_id => @news.news_id).count.to_s + ")" %>
           <%= link_to link_name, change_is_showing_comments_path %>
           <% if is_admin_logged %>
-            | <%= link_to 'Edit', edit_news_path(news) %>
+            | <%= link_to 'Edit', edit_news_path(@news) %>
           <% end %>
       </p>
     </div>
@@ -86,7 +86,7 @@ tinyMCE.init({
           <% link_name = "Komentarze (" + Comment.where(:news_id => @news.news_id).count.to_s + ")" %>
           <%= link_to link_name, change_is_showing_comments_path %>
           <% if is_admin_logged %>
-            | <%= link_to 'Edytuj', edit_news_path(news) %>
+            | <%= link_to 'Edytuj', edit_news_path(@news) %>
           <% end %>
       </p>
     </div>
