@@ -1,4 +1,10 @@
-<% @news.reverse.each do |news| %>
+<% if is_english_language %>
+  <%= will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => News.per_page), :previous_label => "Previous ", :next_label => " Next" %>
+<% else %>
+  <%= will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => News.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
+<% end %><br/>
+
+<% @news.each do |news| %>
   <div class="post">
     <% if is_english_language%>
 

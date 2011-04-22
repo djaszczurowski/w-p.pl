@@ -1,4 +1,10 @@
-<% @postulates.reverse.each do |postulate| %>
+<% if is_english_language %>
+  <%= will_paginate @postulates = @postulates.reverse.paginate(:page => params[:page], :per_page => Postulate.per_page), :previous_label => "Previous ", :next_label => " Next" %>
+<% else %>
+  <%= will_paginate @postulates = @postulates.reverse.paginate(:page => params[:page], :per_page => Postulate.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
+<% end %><br/>
+
+<% @postulates.each do |postulate| %>
 
   <%  @postulate = postulate %>
   <p id="notice"><%= notice %></p>

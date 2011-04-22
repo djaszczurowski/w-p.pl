@@ -1,4 +1,10 @@
-<% @comments.reverse.each do |comment| %>
+<% if is_english_language %>
+  <%= will_paginate @comments = @comments.reverse.paginate(:page => params[:page], :per_page => Comment.per_page), :previous_label => "Previous ", :next_label => " Next" %>
+<% else %>
+  <%= will_paginate @comments = @comments.reverse.paginate(:page => params[:page], :per_page => Comment.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
+<% end %><br/>
+
+<% @comments.each do |comment| %>
   <% @comment = comment %>
   <% if is_english_language %>
     <h3><%= News.find(@comment.news_id).englishSubject %></h3><br/>

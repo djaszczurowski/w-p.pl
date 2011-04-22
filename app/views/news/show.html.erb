@@ -118,8 +118,15 @@ tinyMCE.init({
   <% end %>
 
   <br id="comments_begin"/>
+
   <% if is_showing_comments %>
     <% @comments = Comment.where(:news_id => @news.news_id).reverse %>
+    <% if is_english_language %>
+      <%= will_paginate @comments = @comments.paginate(:page => params[:page], :per_page => Comment.per_page), :renderer => CommentLinkRenderer, :previous_label => "Previous ", :next_label => " Next" %>
+    <% else %>
+      <%= will_paginate @comments = @comments.paginate(:page => params[:page], :per_page => Comment.per_page), :renderer => CommentLinkRenderer, :previous_label => "Wstecz ", :next_label => " Dalej" %>
+    <% end %><br/>
+    
     <% @comments.each do |comment| %>
       <% @comment = comment %>
       <div class="comment">

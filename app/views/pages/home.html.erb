@@ -1,4 +1,10 @@
 <div class="post">
+  <% if is_english_language %>
+    <%= will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => News.per_page), :previous_label => "Previous ", :next_label => " Next" %>
+  <% else %>
+    <%= will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => News.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
+  <% end %><br/>
+
   <% @news.each do |news| %>
 
     <% if is_english_language%>
@@ -24,7 +30,8 @@
           <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
           <%= link_to "Read more", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
-          <%= link_to "Comments", link_path2 %> 
+          <% link_name = "Comments (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
+          <%= link_to link_name, link_path2 %>
         </p>
       </div>
 
@@ -51,7 +58,8 @@
           <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
           <%= link_to "Czytaj dalej", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
-          <%= link_to "Komentarze", link_path2 %> 
+          <% link_name = "Komentarze (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
+          <%= link_to link_name, link_path2 %>
         </p>
       </div>
 
