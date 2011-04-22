@@ -7,11 +7,7 @@ class CommentLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
     def link_creator(text, page)
       # some magic code ;D
       page_link = link(text, page)
-      if text == page
-        part_size = 7 + Math.log10(page).floor
-      else
-        part_size = 6 + text.length
-      end
+      part_size = 6 + text.to_s.length
       part1 = page_link.to_s.slice(0, page_link.length - part_size)
       part2 = page_link.to_s.slice(page_link.length - part_size, page_link.length - 1)
       page_link = part1 + "#comments_begin" + part2

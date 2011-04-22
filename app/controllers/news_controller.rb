@@ -37,7 +37,7 @@ class NewsController < ApplicationController
       @comment.news_id = params[:id]
       @comment.posted = Time.now()
       @comment.subject = params[:title]
-      @comment.comment  = strip_tags(params[:content].to_s) #poszukać czegoś lepszego, ten usuwa wszystko :/
+      @comment.comment = strip_tags(params[:content].to_s) #poszukać czegoś lepszego, ten usuwa wszystko :/
 
       @comment.save
     else
