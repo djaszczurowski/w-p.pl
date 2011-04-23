@@ -122,9 +122,9 @@ tinyMCE.init({
   <% if is_showing_comments %>
     <% @comments = Comment.where(:news_id => @news.news_id).reverse %>
     <% if is_english_language %>
-      <%= will_paginate @comments = @comments.paginate(:page => params[:page], :per_page => Comment.per_page), :renderer => CommentLinkRenderer, :previous_label => "Previous ", :next_label => " Next" %>
+      <%= page_navigator = will_paginate @comments = @comments.paginate(:page => params[:page], :per_page => Comment.per_page), :renderer => CommentLinkRenderer, :previous_label => "Previous ", :next_label => " Next" %>
     <% else %>
-      <%= will_paginate @comments = @comments.paginate(:page => params[:page], :per_page => Comment.per_page), :renderer => CommentLinkRenderer, :previous_label => "Wstecz ", :next_label => " Dalej" %>
+      <%= page_navigator = will_paginate @comments = @comments.paginate(:page => params[:page], :per_page => Comment.per_page), :renderer => CommentLinkRenderer, :previous_label => "Wstecz ", :next_label => " Dalej" %>
     <% end %><br/>
     
     <% @comments.each do |comment| %>
@@ -155,6 +155,7 @@ tinyMCE.init({
     <% end %>
   <% end %>
 
+  <%= page_navigator %>
 </div>
 
 
