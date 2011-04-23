@@ -25,7 +25,7 @@
         <td>
           <b><%= @comment.subject %></b>
           <br/><br/>
-          <%= @comment.comment %>
+          <%= @comment.comment.html_safe %>
           <br/><br/>
           <%= link_to user.username, user %> &nbsp; &nbsp;
           <i><%= @comment.posted.to_s[0..PagesController.date_length] %></i>
