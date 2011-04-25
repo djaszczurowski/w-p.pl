@@ -4,11 +4,11 @@
 <% else %>
   <script src="/javascripts/languages/jquery.validationEngine-pl.js" type="text/javascript" charset="utf-8"></script>
 <% end %>
-<script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<script src="/javascripts/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
 <script>
   jQuery(document).ready(function(){
     // binds form submission and fields to the validation engine
-    jQuery("#archive_form").validationEngine('attach', {bindMethod:"live",promptPosition : "topLeft",scroll:false});
+    jQuery("#archive-form").validationEngine('attach', {bindMethod:"live",promptPosition : "topLeft",scroll:false});
 
   });
 </script>
@@ -18,12 +18,11 @@
 
   <% if is_english_language %>
 
-    <h2 class="title" align="center"><a href="#">Archive</a></h2>
-    <br/>
-    <br/>
+    <h2 class="title" align="center">Archive</h2><br/>
+    
     <div id="archive_h_container">
       <div id="archive_form_container">
-        <form id="archive_form" class="formular" name="contact-form" method="post" action="submit.php">
+        <form id="archive-form" class="formular" name="archive-form" action="/archive/filter_archive">
 
           <table width="100%" border="0">
             <tr>
@@ -41,18 +40,18 @@
               <td><label for="month"><strong>Month:</strong></label></td>
               <td><select style="width:110px;" id="month" name="month">
                   <option value="All year" selected="selected" >All year</option>
-                  <option value="Jan">January</option>
-                  <option value="Feb">February</option>
-                  <option value="Mar">March</option>
-                  <option value="Apr">April</option>
-                  <option value="May">May</option>
-                  <option value="Jun">June</option>
-                  <option value="Jul">July</option>
-                  <option value="Aug">August</option>
-                  <option value="Sep">September</option>
-                  <option value="Oct">October</option>
-                  <option value="Nov">November</option>
-                  <option value="Dec">December</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
                 </select>
               </td>
               <td>&nbsp;</td>
@@ -60,7 +59,7 @@
             <tr>
               <td valign="top">&nbsp;</td>
               <td>
-                <input style="width:110px;" type="submit" name="button" id="button" value="Show posts" />
+                <input style="width:110px;" type="submit" name="button" id="button" value="Show" />
               </td>
             </tr>
           </table>
@@ -69,12 +68,67 @@
       <div id="archive_description">
         <p>
           <b>Tip: </b>
-          If you are interested in news from particular month please specify your preferences using form on the left and click show button in order to comply. All news matching given criterion will be displayed right below this para.
+          If you are interested in news from particular month please specify your preferences using form on the left and click Show button in order to comply. All news matching given criterion will be displayed right below this para.
         </p>
       </div>
     </div>
 
   <% else %>
+
+    <h2 class="title" align="center">Archiwum</h2><br/>
+
+    <div id="archive_h_container">
+      <div id="archive_form_container">
+        <form id="archive-form" class="formular" name="archive-form" action="/archive/filter_archive">
+
+          <table width="100%" border="0">
+            <tr>
+              <td><label for="year"><strong>Rok:</strong></label></td>
+              <td><select style="width:110px;" id="year" name="year" class="validate[required]" >
+                  <option value="" selected="selected" > - Wybierz -</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="month"><strong>Miesiąc:</strong></label></td>
+              <td><select style="width:110px;" id="month" name="month">
+                  <option value="All year" selected="selected" >Cały rok</option>
+                  <option value="1">Styczeń</option>
+                  <option value="2">Luty</option>
+                  <option value="3">Marzec</option>
+                  <option value="4">Kwiecień</option>
+                  <option value="5">Maj</option>
+                  <option value="6">Czerwiec</option>
+                  <option value="7">Lipiec</option>
+                  <option value="8">Sierpień</option>
+                  <option value="9">Wrzesień</option>
+                  <option value="10">Październik</option>
+                  <option value="11">Listopad</option>
+                  <option value="12">Grudzień</option>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top">&nbsp;</td>
+              <td>
+                <input style="width:110px;" type="submit" name="button" id="button" value="Pokaż" />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div id="archive_description">
+        <p>
+          <b>Wskazówka: </b>
+          Jeśli jesteś zainteresowany news'ami z określonego miesiąca należy zdefiniować swoje preferencje, używając formularza po lewej i klikając przycisk Pokaż w celu wykonania. Wszystkie newsy spełniające podane kryterium zostaną wyświetlone poniżej.
+        </p>
+      </div>
+    </div>
 
   <% end %>
 
@@ -88,77 +142,79 @@
 
 <div class="post">
 
-<% @news = News.all %>
+  <% if @news.nil? %>
+    <% @news = [] %>
+  <% end %>
 
-<% if is_english_language %>
-  <%= page_navigator = will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Previous ", :next_label => " Next" %>
-<% else %>
-  <%= page_navigator = will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
-<% end %><br/>
+  <% if is_english_language %>
+    <%= page_navigator = will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Previous ", :next_label => " Next" %>
+  <% else %>
+    <%= page_navigator = will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
+  <% end %><br/>
 
-<% @news.each do |news| %>
+  <% @news.each do |news| %>
 
-  <% if is_english_language%>
+    <% if is_english_language%>
 
-    <h2 class="title"> <%= news.englishSubject %>  </h2>
-    <p class="meta">
-      <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
-      <%  user = User.find(news.user_id) %>
-      <span class="posted">Posted by <%= link_to user.username, user %></span>
-    </p>
-    <div style="clear: both;">&nbsp;</div>
-    <div class="entry">
-      <% text = news.englishNews.split(" ") %>
-      <p>
-        <% for i in 0...PagesController.news_length %>
-          <%= text[i].to_s + " " %>
-        <% end %>
-        <% if text.length > PagesController.news_length %>
-          ...
-        <% end %>
+      <h2 class="title"> <%= news.englishSubject %>  </h2>
+      <p class="meta">
+        <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
+        <%  user = User.find(news.user_id) %>
+        <span class="posted">Posted by <%= link_to user.username, user %></span>
       </p>
-      <p class="links">
-        <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
-        <%= link_to "Read more", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-        <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
-        <% link_name = "Comments (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
-        <%= link_to link_name, link_path2 %>
-      </p>
-    </div>
+      <div style="clear: both;">&nbsp;</div>
+      <div class="entry">
+        <% text = news.englishNews.split(" ") %>
+        <p>
+          <% for i in 0...PagesController.news_length %>
+            <%= text[i].to_s + " " %>
+          <% end %>
+          <% if text.length > PagesController.news_length %>
+            ...
+          <% end %>
+        </p>
+        <p class="links">
+          <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+          <%= link_to "Read more", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+          <% link_name = "Comments (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
+          <%= link_to link_name, link_path2 %>
+        </p>
+      </div>
 
-  <%  else %>
+    <%  else %>
 
-    <h2 class="title"> <%= news.polishSubject %>  </h2>
-    <p class="meta">
-      <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
-      <%  user = User.find(news.user_id) %>
-      <span class="posted">Autor <%= link_to user.username, user %></span>
-    </p>
-    <div style="clear: both;">&nbsp;</div>
-    <div class="entry">
-      <% text = news.polishNews.split(" ") %>
-      <p>
-        <% for i in 0...PagesController.news_length %>
-          <%= text[i].to_s + " " %>
-        <% end %>
-        <% if text.length > PagesController.news_length %>
-          ...
-        <% end %>
+      <h2 class="title"> <%= news.polishSubject %>  </h2>
+      <p class="meta">
+        <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
+        <%  user = User.find(news.user_id) %>
+        <span class="posted">Autor <%= link_to user.username, user %></span>
       </p>
-      <p class="links">
-        <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
-        <%= link_to "Czytaj dalej", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-        <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
-        <% link_name = "Komentarze (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
-        <%= link_to link_name, link_path2 %>
-      </p>
-    </div>
+      <div style="clear: both;">&nbsp;</div>
+      <div class="entry">
+        <% text = news.polishNews.split(" ") %>
+        <p>
+          <% for i in 0...PagesController.news_length %>
+            <%= text[i].to_s + " " %>
+          <% end %>
+          <% if text.length > PagesController.news_length %>
+            ...
+          <% end %>
+        </p>
+        <p class="links">
+          <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+          <%= link_to "Czytaj dalej", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+          <% link_name = "Komentarze (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
+          <%= link_to link_name, link_path2 %>
+        </p>
+      </div>
+
+    <% end %>
 
   <% end %>
 
-<% end %>
-
-<%= page_navigator %>
+  <%= page_navigator %>
 
 </div>
 

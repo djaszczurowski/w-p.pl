@@ -1,3 +1,3 @@
-class UserMailersController < ApplicationController
+class UsersMailerController < ApplicationController
 
 end

@@ -65,6 +65,22 @@ class PagesController < ApplicationController
   	@title = "Archiwum"
   end
 
+  def filter_archive
+    @@current_page = "/archive"
+    if params[:month] == "All year"
+      @news = News.find(:all,
+        :conditions => ["posted < ? AND posted >= ?",
+          DateTime.new.change(:year => params[:year].to_i + 1),
+          DateTime.new.change(:year => params[:year].to_i)] )
+    else
+      @news = News.find(:all,
+        :conditions => ["posted < ? AND posted >= ?",
+          DateTime.new.change(:year => params[:year].to_i, :month => params[:month].to_i + 1),
+          DateTime.new.change(:year => params[:year].to_i, :month => params[:month].to_i)] )
+    end
+    render 'archive'
+  end
+
   def postulates
     @@current_page = "/postulates"
   	@postulates = Postulate.all
