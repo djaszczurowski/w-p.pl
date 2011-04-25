@@ -12,6 +12,11 @@ class PagesController < ApplicationController
   @@news_on_main = 4
   @@contact_email = "kulessa.marek@gmail.com"
   @@current_page = "/main"
+  @@archive_begin_year = 2009
+
+  def self.archive_begin_year
+    @@archive_begin_year
+  end
 
   def self.news_on_main
     @@news_on_main

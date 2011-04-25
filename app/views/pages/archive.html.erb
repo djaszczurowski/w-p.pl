@@ -29,9 +29,9 @@
               <td><label for="year"><strong>Year:</strong></label></td>
               <td><select style="width:110px;" id="year" name="year" class="validate[required]" >
                   <option value="" selected="selected" > - Choose -</option>
-                  <option value="2011">2011</option>
-                  <option value="2010">2010</option>
-                  <option value="2009">2009</option>
+                  <% for i in PagesController.archive_begin_year...(Time.now.year.to_i + 1) %>
+                    <option value=<%= i.to_s %>><%= i %></option>
+                  <% end %>
                 </select>
               </td>
               <td>&nbsp;</td>
@@ -86,9 +86,9 @@
               <td><label for="year"><strong>Rok:</strong></label></td>
               <td><select style="width:110px;" id="year" name="year" class="validate[required]" >
                   <option value="" selected="selected" > - Wybierz -</option>
-                  <option value="2011">2011</option>
-                  <option value="2010">2010</option>
-                  <option value="2009">2009</option>
+                  <% for i in PagesController.archive_begin_year...(Time.now.year.to_i + 1) %>
+                    <option value=<%= i.to_s %>><%= i %></option>
+                  <% end %>
                 </select>
               </td>
               <td>&nbsp;</td>
