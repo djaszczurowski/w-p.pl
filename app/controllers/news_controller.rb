@@ -4,6 +4,12 @@ class NewsController < ApplicationController
 
   helper_method :change_is_showing_comments
   helper_method :is_showing_comments
+  
+  @@per_page = 2
+
+  def self.per_page
+    @@per_page
+  end
 
   def show_comments
     cookies[:comm] = "yes"

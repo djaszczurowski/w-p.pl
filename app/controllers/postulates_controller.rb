@@ -2,6 +2,13 @@
 class PostulatesController < ApplicationController
 	layout :layout_sort
 	before_filter :is_admin_logged, :only => :edit
+
+  @@per_page = 2
+
+  def self.per_page
+    @@per_page
+  end
+
   # GET /postulates
   # GET /postulates.xml
   def index

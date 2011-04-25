@@ -1,2 +1,164 @@
-<h1>Pages#archive</h1>
-<p>Find me in app/views/pages/archive.html.erb</p>
+<!-- VALIDATION IMPORTS -->
+<% if is_english_language%>
+  <script src="/javascripts/languages/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<% else %>
+  <script src="/javascripts/languages/jquery.validationEngine-pl.js" type="text/javascript" charset="utf-8"></script>
+<% end %>
+<script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  jQuery(document).ready(function(){
+    // binds form submission and fields to the validation engine
+    jQuery("#archive_form").validationEngine('attach', {bindMethod:"live",promptPosition : "topLeft",scroll:false});
+
+  });
+</script>
+
+
+<div class="post">
+
+  <% if is_english_language %>
+
+    <h2 class="title" align="center"><a href="#">Archive</a></h2>
+    <br/>
+    <br/>
+    <div id="archive_h_container">
+      <div id="archive_form_container">
+        <form id="archive_form" class="formular" name="contact-form" method="post" action="submit.php">
+
+          <table width="100%" border="0">
+            <tr>
+              <td><label for="year"><strong>Year:</strong></label></td>
+              <td><select style="width:110px;" id="year" name="year" class="validate[required]" >
+                  <option value="" selected="selected" > - Choose -</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="month"><strong>Month:</strong></label></td>
+              <td><select style="width:110px;" id="month" name="month">
+                  <option value="All year" selected="selected" >All year</option>
+                  <option value="Jan">January</option>
+                  <option value="Feb">February</option>
+                  <option value="Mar">March</option>
+                  <option value="Apr">April</option>
+                  <option value="May">May</option>
+                  <option value="Jun">June</option>
+                  <option value="Jul">July</option>
+                  <option value="Aug">August</option>
+                  <option value="Sep">September</option>
+                  <option value="Oct">October</option>
+                  <option value="Nov">November</option>
+                  <option value="Dec">December</option>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top">&nbsp;</td>
+              <td>
+                <input style="width:110px;" type="submit" name="button" id="button" value="Show posts" />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div id="archive_description">
+        <p>
+          <b>Tip: </b>
+          If you are interested in news from particular month please specify your preferences using form on the left and click show button in order to comply. All news matching given criterion will be displayed right below this para.
+        </p>
+      </div>
+    </div>
+
+  <% else %>
+
+  <% end %>
+
+  <div id="archive_separator">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+  <div style="clear: both;">&nbsp;</div>
+</div>
+
+
+<div style="clear: both;">&nbsp;</div>
+
+
+<div class="post">
+
+<% @news = News.all %>
+
+<% if is_english_language %>
+  <%= page_navigator = will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Previous ", :next_label => " Next" %>
+<% else %>
+  <%= page_navigator = will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
+<% end %><br/>
+
+<% @news.each do |news| %>
+
+  <% if is_english_language%>
+
+    <h2 class="title"> <%= news.englishSubject %>  </h2>
+    <p class="meta">
+      <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
+      <%  user = User.find(news.user_id) %>
+      <span class="posted">Posted by <%= link_to user.username, user %></span>
+    </p>
+    <div style="clear: both;">&nbsp;</div>
+    <div class="entry">
+      <% text = news.englishNews.split(" ") %>
+      <p>
+        <% for i in 0...PagesController.news_length %>
+          <%= text[i].to_s + " " %>
+        <% end %>
+        <% if text.length > PagesController.news_length %>
+          ...
+        <% end %>
+      </p>
+      <p class="links">
+        <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+        <%= link_to "Read more", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+        <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+        <% link_name = "Comments (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
+        <%= link_to link_name, link_path2 %>
+      </p>
+    </div>
+
+  <%  else %>
+
+    <h2 class="title"> <%= news.polishSubject %>  </h2>
+    <p class="meta">
+      <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
+      <%  user = User.find(news.user_id) %>
+      <span class="posted">Autor <%= link_to user.username, user %></span>
+    </p>
+    <div style="clear: both;">&nbsp;</div>
+    <div class="entry">
+      <% text = news.polishNews.split(" ") %>
+      <p>
+        <% for i in 0...PagesController.news_length %>
+          <%= text[i].to_s + " " %>
+        <% end %>
+        <% if text.length > PagesController.news_length %>
+          ...
+        <% end %>
+      </p>
+      <p class="links">
+        <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+        <%= link_to "Czytaj dalej", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+        <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+        <% link_name = "Komentarze (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
+        <%= link_to link_name, link_path2 %>
+      </p>
+    </div>
+
+  <% end %>
+
+<% end %>
+
+<%= page_navigator %>
+
+</div>
+

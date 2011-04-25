@@ -2,6 +2,12 @@
 class UsersController < ApplicationController
   
   layout :layout_sort
+
+  @@per_page = 2
+
+  def self.per_page
+    @@per_page
+  end
   
   # GET /users
   # GET /users.xml

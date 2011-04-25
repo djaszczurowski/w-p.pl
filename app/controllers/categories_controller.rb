@@ -1,5 +1,12 @@
 # encoding: utf-8
 class CategoriesController < ApplicationController
+
+  @@per_page = 2
+
+  def self.per_page
+    @@per_page
+  end
+
   # GET /categories
   # GET /categories.xml
   def index

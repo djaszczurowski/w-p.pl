@@ -1,4 +1,11 @@
 class CommentsController < ApplicationController
+
+  @@per_page = 2
+
+  def self.per_page
+    @@per_page
+  end
+
   # GET /comments
   # GET /comments.xml
   def index

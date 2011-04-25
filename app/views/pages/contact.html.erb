@@ -1,3 +1,4 @@
+<!-- GOOGLE MAPS -->
 <script type="text/javascript">
   function initialize() {
     var myLatlng = new google.maps.LatLng(51.111, 17.055);
@@ -35,27 +36,130 @@
   window.onload = loadScript;
 </script>
 
-
+<!-- VALIDATION IMPORTS -->
 <% if is_english_language%>
-  <h2>Let's meet!</h2><br />
-<%  else %>
-  <h2>Spotkajmy się!</h2><br />
+  <script src="/javascripts/languages/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<% else %>
+  <script src="/javascripts/languages/jquery.validationEngine-pl.js" type="text/javascript" charset="utf-8"></script>
 <% end %>
+<script src="/javascripts/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  jQuery(document).ready(function(){
+    // binds form submission and fields to the validation engine
+    jQuery("#contact-form").validationEngine('attach', {bindMethod:"live"});
+  });
+</script>
 
-<div id="map_container">
+
+<div class="post">
+  <% if is_english_language%>
+    <h2 class="title">Let's talk!</h2><br/>
+  <% else %>
+    <h2 class="title">Porozmawiajmy!</h2><br/>
+  <% end %>
+  
+  <div id="h_container">   
+    <div id="form-container">
+
+      <form id="contact-form" class="formular" name="contact-form" action="/contact/send_email">
+        <table width="100%" border="0">
+
+          <% if is_english_language%>
+
+            <tr>
+              <td><label for="name"><b>Name:</b></label></td>
+              <td><input style="width:230px;" type="text" class="validate[required,custom[onlyLetterNumber]]" name="name" id="name"/></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="email"><strong>Email:</strong></label></td>
+              <td><input style="width:230px;" type="text" class="validate[required,custom[email]] text-input"  name="email" id="email" /></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="subject"><strong>Subject:</strong></label></td>
+              <td><select style="width:234px;" id="subject" name="subject" class="validate[required]" >
+                  <option value="" selected="selected" > - Choose -</option>
+                  <option value="Question">Question</option>
+                  <option value="Business proposal">Business proposal</option>
+                  <option value="Advertisement">Advertising</option>
+                  <option value="Complaint">Complaint</option>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top"><label for="message"><strong>Message:</strong></label></td>
+              <td>
+                <textarea style="width:230px; height:150px;"  name="message" id="message" class="validate[required,custom[onlyLetterNumberSp]]" ></textarea>
+              </td>
+              <td valign="top">&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top">&nbsp;</td>
+              <td align="center" colspan="2" style="padding-right:10px;"/>
+                <input type="submit" name="button" id="button" value="Submit" />
+                <input type="reset" name="button2" id="button2" value="Reset" />
+            </tr>
+
+          <% else %>
+
+            <tr>
+              <td><label for="name"><b>Nick:</b></label></td>
+              <td><input style="width:230px;" type="text" class="validate[required,custom[onlyLetterNumber]]" name="name" id="name"/></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="email"><strong>Email:</strong></label></td>
+              <td><input style="width:230px;" type="text" class="validate[required,custom[email]] text-input"  name="email" id="email" /></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="subject"><strong>Temat:</strong></label></td>
+              <td><select style="width:234px;" id="subject" name="subject" class="validate[required]" >
+                  <option value="" selected="selected" > - Wybierz -</option>
+                  <option value="Question">Pytanie</option>
+                  <option value="Business proposal">Oferta biznesowa</option>
+                  <option value="Advertisement">Ogłoszenie</option>
+                  <option value="Complaint">Skarga</option>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top"><label for="message"><strong>Treść:</strong></label></td>
+              <td>
+                <textarea style="width:230px; height:150px;"  name="message" id="message" class="validate[required,custom[onlyLetterNumberSp]]" ></textarea>
+              </td>
+              <td valign="top">&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top">&nbsp;</td>
+              <td align="center" colspan="2" style="padding-right:10px;"/>
+                <input type="submit" name="button" id="button" value="Wyślij" />
+                <input type="reset" name="button2" id="button2" value="Wyczyść" />
+            </tr>
+
+          <% end %>
+
+        </table>
+      </form>
+    </div>
+
+    <div id="map_description" style="height:auto">
+      <p>
+        <% if is_english_language%>
+          English - Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est.
+        <% else %>
+          Polski - Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est.
+          Polski - Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est.
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+  <div style="clear: both;">&nbsp;</div>
   <div id="map_canvas"></div>
 
-  <div id="map_description">
-    <p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est.</p>
-  </div>
-</div>
-<div style="clear: both;">&nbsp;</div>
-
-<div class="entry">
-  <% if is_english_language%>
-    <p class="links"><a href="#">Read More</a></p>
-  <%  else %>
-    <p class="links"><a href="#">Czytaj dalej</a></p>
-  <% end %>
 </div>
 
