@@ -11,6 +11,26 @@ class PagesController < ApplicationController
   @@page_links = ["/home", "/about", "/archive", "/postulates", "/contact"]
   @@date_length = 18
   @@news_length = 40
+  @@news_on_main = 4
+  @@contact_email = "kulessa.marek@gmail.com"
+  @@current_page = "/main"
+  @@archive_begin_year = 2009
+
+  def self.archive_begin_year
+    @@archive_begin_year
+  end
+
+  def self.news_on_main
+    @@news_on_main
+  end
+
+  def self.contact_email
+    @@contact_email
+  end
+
+  def self.current_page
+    @@current_page
+  end
 
   def self.pl_titles
     @@pl_titles
@@ -33,7 +53,7 @@ class PagesController < ApplicationController
   end
 
   def home
-    @current_page = "Main"
+    @@current_page = "/main"
   	@title = "Strona Główna"
     @news = News.all
   	respond_to do |format|
@@ -43,17 +63,33 @@ class PagesController < ApplicationController
   end
 
   def about
-    @current_page = "About"
+    @@current_page = "/about"
   	@title = "O nas"
   end
 
   def archive
-    @current_page = "Archive"
+    @@current_page = "/archive"
   	@title = "Archiwum"
   end
 
+  def filter_archive
+    @@current_page = "/archive"
+    if params[:month] == "All year"
+      @news = News.find(:all,
+        :conditions => ["posted < ? AND posted >= ?",
+          DateTime.new.change(:year => params[:year].to_i + 1),
+          DateTime.new.change(:year => params[:year].to_i)] )
+    else
+      @news = News.find(:all,
+        :conditions => ["posted < ? AND posted >= ?",
+          DateTime.new.change(:year => params[:year].to_i, :month => params[:month].to_i + 1),
+          DateTime.new.change(:year => params[:year].to_i, :month => params[:month].to_i)] )
+    end
+    render 'archive'
+  end
+
   def postulates
-    @current_page = "Postulates"
+    @@current_page = "/postulates"
   	@postulates = Postulate.all
   	respond_to do |format|
       format.html # index.html.erb
@@ -62,9 +98,21 @@ class PagesController < ApplicationController
   end
 
   def contact
-    @current_page = "Contact"
+    @@current_page = "/contact"
   	@title = "Kontakt"
-  end  
+  end
+
+  def send_email
+    email = @@contact_email
+    subject = "test"
+    user = "markkkk"
+    #UserMailer.xxx
+    #UserMailer.contact_email(user, email, subject).deliver
+    #puts UserMailer.methods
+    UserMailer.welcome_email(user).deliver
+
+    redirect_to :back
+  end
 	
   def admin_log   	
   	

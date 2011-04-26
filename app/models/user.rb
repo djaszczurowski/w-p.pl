@@ -1,7 +1,6 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
   cattr_reader :per_page
-  @@per_page = 2
 	attr_accessor :password
 	before_save :encrypt_password
 	

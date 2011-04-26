@@ -1,2 +1,220 @@
-<h1>Pages#archive</h1>
-<p>Find me in app/views/pages/archive.html.erb</p>
+<!-- VALIDATION IMPORTS -->
+<% if is_english_language%>
+  <script src="/javascripts/languages/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<% else %>
+  <script src="/javascripts/languages/jquery.validationEngine-pl.js" type="text/javascript" charset="utf-8"></script>
+<% end %>
+<script src="/javascripts/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  jQuery(document).ready(function(){
+    // binds form submission and fields to the validation engine
+    jQuery("#archive-form").validationEngine('attach', {bindMethod:"live",promptPosition : "topLeft",scroll:false});
+
+  });
+</script>
+
+
+<div class="post">
+
+  <% if is_english_language %>
+
+    <h2 class="title" align="center">Archive</h2><br/>
+    
+    <div id="archive_h_container">
+      <div id="archive_form_container">
+        <form id="archive-form" class="formular" name="archive-form" action="/archive/filter_archive">
+
+          <table width="100%" border="0">
+            <tr>
+              <td><label for="year"><strong>Year:</strong></label></td>
+              <td><select style="width:110px;" id="year" name="year" class="validate[required]" >
+                  <option value="" selected="selected" > - Choose -</option>
+                  <% for i in PagesController.archive_begin_year...(Time.now.year.to_i + 1) %>
+                    <option value=<%= i.to_s %>><%= i %></option>
+                  <% end %>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="month"><strong>Month:</strong></label></td>
+              <td><select style="width:110px;" id="month" name="month">
+                  <option value="All year" selected="selected" >All year</option>
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top">&nbsp;</td>
+              <td>
+                <input style="width:110px;" type="submit" name="button" id="button" value="Show" />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div id="archive_description">
+        <p>
+          <b>Tip: </b>
+          If you are interested in news from particular month please specify your preferences using form on the left and click Show button in order to comply. All news matching given criterion will be displayed right below this para.
+        </p>
+      </div>
+    </div>
+
+  <% else %>
+
+    <h2 class="title" align="center">Archiwum</h2><br/>
+
+    <div id="archive_h_container">
+      <div id="archive_form_container">
+        <form id="archive-form" class="formular" name="archive-form" action="/archive/filter_archive">
+
+          <table width="100%" border="0">
+            <tr>
+              <td><label for="year"><strong>Rok:</strong></label></td>
+              <td><select style="width:110px;" id="year" name="year" class="validate[required]" >
+                  <option value="" selected="selected" > - Wybierz -</option>
+                  <% for i in PagesController.archive_begin_year...(Time.now.year.to_i + 1) %>
+                    <option value=<%= i.to_s %>><%= i %></option>
+                  <% end %>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><label for="month"><strong>Miesiąc:</strong></label></td>
+              <td><select style="width:110px;" id="month" name="month">
+                  <option value="All year" selected="selected" >Cały rok</option>
+                  <option value="1">Styczeń</option>
+                  <option value="2">Luty</option>
+                  <option value="3">Marzec</option>
+                  <option value="4">Kwiecień</option>
+                  <option value="5">Maj</option>
+                  <option value="6">Czerwiec</option>
+                  <option value="7">Lipiec</option>
+                  <option value="8">Sierpień</option>
+                  <option value="9">Wrzesień</option>
+                  <option value="10">Październik</option>
+                  <option value="11">Listopad</option>
+                  <option value="12">Grudzień</option>
+                </select>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td valign="top">&nbsp;</td>
+              <td>
+                <input style="width:110px;" type="submit" name="button" id="button" value="Pokaż" />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div id="archive_description">
+        <p>
+          <b>Wskazówka: </b>
+          Jeśli jesteś zainteresowany news'ami z określonego miesiąca należy zdefiniować swoje preferencje, używając formularza po lewej i klikając przycisk Pokaż w celu wykonania. Wszystkie newsy spełniające podane kryterium zostaną wyświetlone poniżej.
+        </p>
+      </div>
+    </div>
+
+  <% end %>
+
+  <div id="archive_separator">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+  <div style="clear: both;">&nbsp;</div>
+</div>
+
+
+<div style="clear: both;">&nbsp;</div>
+
+
+<div class="post">
+
+  <% if @news.nil? %>
+    <% @news = [] %>
+  <% end %>
+
+  <% if is_english_language %>
+    <%= page_navigator = will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Previous ", :next_label => " Next" %>
+  <% else %>
+    <%= page_navigator = will_paginate @news = @news.reverse.paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
+  <% end %><br/>
+
+  <% @news.each do |news| %>
+
+    <% if is_english_language%>
+
+      <h2 class="title"> <%= news.englishSubject %>  </h2>
+      <p class="meta">
+        <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
+        <%  user = User.find(news.user_id) %>
+        <span class="posted">Posted by <%= link_to user.username, user %></span>
+      </p>
+      <div style="clear: both;">&nbsp;</div>
+      <div class="entry">
+        <% text = news.englishNews.split(" ") %>
+        <p>
+          <% for i in 0...PagesController.news_length %>
+            <%= text[i].to_s + " " %>
+          <% end %>
+          <% if text.length > PagesController.news_length %>
+            ...
+          <% end %>
+        </p>
+        <p class="links">
+          <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+          <%= link_to "Read more", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+          <% link_name = "Comments (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
+          <%= link_to link_name, link_path2 %>
+        </p>
+      </div>
+
+    <%  else %>
+
+      <h2 class="title"> <%= news.polishSubject %>  </h2>
+      <p class="meta">
+        <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
+        <%  user = User.find(news.user_id) %>
+        <span class="posted">Autor <%= link_to user.username, user %></span>
+      </p>
+      <div style="clear: both;">&nbsp;</div>
+      <div class="entry">
+        <% text = news.polishNews.split(" ") %>
+        <p>
+          <% for i in 0...PagesController.news_length %>
+            <%= text[i].to_s + " " %>
+          <% end %>
+          <% if text.length > PagesController.news_length %>
+            ...
+          <% end %>
+        </p>
+        <p class="links">
+          <% link_path1 = "/news/" + news.news_id.to_s + "/hide_comments" %>
+          <%= link_to "Czytaj dalej", link_path1 %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <% link_path2 = "/news/" + news.news_id.to_s + "/show_comments" %>
+          <% link_name = "Komentarze (" + Comment.where(:news_id => news.news_id).count.to_s + ")" %>
+          <%= link_to link_name, link_path2 %>
+        </p>
+      </div>
+
+    <% end %>
+
+  <% end %>
+
+  <%= page_navigator %>
+
+</div>
+

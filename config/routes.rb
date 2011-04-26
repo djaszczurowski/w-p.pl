@@ -9,9 +9,11 @@ WPPl::Application.routes.draw do
   
   	  # archive
   	  match "/archive", :to => 'pages#archive', :as => 'archive'
+      match "/archive/filter_archive", :to => "pages#filter_archive", :as => "filter_archive"
   		
   	  # contact
-  	  match "/contact", :to => 'pages#contact', :as => 'contact'  		
+  	  match "/contact", :to => 'pages#contact', :as => 'contact'
+      match "/contact/send_email", :to => "pages#send_email", :as => "send_email"
   
   # ROOT 
    	  root :to => 'pages#home'  
