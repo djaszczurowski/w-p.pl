@@ -1,6 +1,6 @@
 # encoding: utf-8
 class PagesController < ApplicationController
- 
+
 	#before_filter :authenticate_admin, :only => :admin
   helper_method :admin_panel
 
@@ -107,7 +107,8 @@ class PagesController < ApplicationController
     #UserMailer.xxx
     #UserMailer.contact_email(user, email, subject).deliver
     #puts UserMailer.methods
-    UserMailer.welcome_email(user).deliver
+    #UserMailer.welcome_email(user).deliver
+    puts UserMailer.method_defined?("welcome_email")
 
     redirect_to :back
   end

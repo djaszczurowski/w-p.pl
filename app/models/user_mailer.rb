@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
 
-  def contact_email(user, email, subject)
+  def self.contact_email(user, email, subject)
     puts "sending.............................."
     recipients "mark1989@o2.com"
     from "My Awesome Site Notifications <notifications@example.com>"
@@ -9,11 +9,11 @@ class UserMailer < ActionMailer::Base
     body( {:user => "user", :url => "http://example.com/login"})
   end
 
-  def xxx
+  def self.xxx
     puts "???????????????????????????????????????"
   end
 
-  def welcome_email(user)
+  def self.welcome_email(user)
     recipients "kulessa.marek@gmail.com"
     from "My Awesome Site Notifications <notifications@example.com>"
     subject "Welcome to My Awesome Site"
