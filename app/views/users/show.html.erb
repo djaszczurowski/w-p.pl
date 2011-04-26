@@ -21,8 +21,14 @@
   </p>
 
   <p>
+    <b>Joined:</b>
+    <%= @user.registered %>
+  </p>
+
+  <p>
     <b>News:</b>
-    <%= News.where(:user_id => @user.user_id).size %><br/>
+    <%= news = News.where(:user_id => @user.user_id).size %>
+    (<%= (news / (Date.current() - @user.registered).to_d).ceil(3) %> per day)<br/>
     <% news = News.where(:user_id => @user.user_id).last %>
     <% if !news.nil? %>
       <% link_path = "/news/" + news.news_id.to_s + "/hide_comments" %>
@@ -33,25 +39,28 @@
     <%= link_to 'Show all', filter_news_path(@user.user_id) %>
   </p>
 
-  <p>
-    <b>Postulates:</b>
-    <%= Postulate.where(:user_id => @user.user_id).size %><br/>
-    <%= link_to 'Show last', Postulate.where(:user_id => @user.user_id).last %> |
-    <%= link_to 'Show all', filter_postulates_path(@user.user_id) %>
-  </p>
+  <% if is_admin_logged %>
+    <p>
+      <b>Postulates:</b>
+      <%= Postulate.where(:user_id => @user.user_id).size %><br/>
+      <%= link_to 'Show last', Postulate.where(:user_id => @user.user_id).last %> |
+      <%= link_to 'Show all', filter_postulates_path(@user.user_id) %>
+    </p>
+  <% end %>
 
   <p>
     <b>Comments:</b>
-    <%= Comment.where(:user_id => @user.user_id).size %><br/>
+    <%= comments = Comment.where(:user_id => @user.user_id).size %>
+    (<%= (comments / (Date.current() - @user.registered).to_d).ceil(3) %> per day)<br/>
     <%= link_to 'Show last', Comment.where(:user_id => @user.user_id).last %> |
     <%= link_to 'Show all', filter_comments_path(@user.user_id) %>
   </p>
 
   <% if is_admin_logged %>
-  <p>
-    <b>Privilegeslevel:</b>
-    <%= @user.privilegesLevel %>
-  </p>
+    <p>
+      <b>Privilegeslevel:</b>
+      <%= @user.privilegesLevel %>
+    </p>
   <% end %>
 
   <% if is_admin_logged %>
@@ -80,8 +89,14 @@
   </p>
 
   <p>
+    <b>Dołączył:</b>
+    <%= @user.registered %>
+  </p>
+
+  <p>
     <b>Newsy:</b>
-    <%= News.where(:user_id => @user.user_id).size %><br/>
+    <%= news = News.where(:user_id => @user.user_id).size %>
+    (<%= (news / (Date.current() - @user.registered).to_d).ceil(3) %> dziennie)<br/>
     <% news = News.where(:user_id => @user.user_id).last %>
     <% if !news.nil? %>
       <% link_path = "/news/" + news.news_id.to_s + "/hide_comments" %>
@@ -92,25 +107,28 @@
     <%= link_to 'Pokaż wszystkie', filter_news_path(@user.user_id) %>
   </p>
 
-  <p>
-    <b>Postulaty:</b>
-    <%= Postulate.where(:user_id => @user.user_id).size %><br />
-    <%= link_to 'Pokaż ostatni', Postulate.where(:user_id => @user.user_id).last %> |
-    <%= link_to 'Pokaż wszystkie', filter_postulates_path(@user.user_id) %>
-  </p>
+  <% if is_admin_logged %>
+    <p>
+      <b>Postulaty:</b>
+      <%= Postulate.where(:user_id => @user.user_id).size %><br />
+      <%= link_to 'Pokaż ostatni', Postulate.where(:user_id => @user.user_id).last %> |
+      <%= link_to 'Pokaż wszystkie', filter_postulates_path(@user.user_id) %>
+    </p>
+  <% end %>
 
   <p>
     <b>Komentarze:</b>
-    <%= Comment.where(:user_id => @user.user_id).size %><br />
+    <%= comments = Comment.where(:user_id => @user.user_id).size %>
+    (<%= (comments / (Date.current() - @user.registered).to_d).ceil(3) %> dziennie)<br/>
     <%= link_to 'Pokaż ostatni', Comment.where(:user_id => @user.user_id).last %> |
     <%= link_to 'Pokaż wszystkie', filter_comments_path(@user.user_id) %>
   </p>
 
   <% if is_admin_logged %>
-  <p>
-    <b>Poziom uprawnień:</b>
-    <%= @user.privilegesLevel %>
-  </p>
+    <p>
+      <b>Poziom uprawnień:</b>
+      <%= @user.privilegesLevel %>
+    </p>
   <% end %>
 
   <% if is_admin_logged %>
