@@ -2,6 +2,10 @@
 class NewsController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
+  layout "admin_panel", :only => [:edit, :index]
+  layout "application", :except => [:edit, :index]
+  
+  
   helper_method :change_is_showing_comments
   helper_method :is_showing_comments
 
@@ -47,7 +51,7 @@ class NewsController < ApplicationController
     redirect_to "/news/" + params[:id] + "#comments_begin"
   end
 
-	layout :layout_sort
+	
   # GET /news
   # GET /news.xml
   def index
@@ -154,14 +158,6 @@ class NewsController < ApplicationController
    		flash.now[:error] = "Zaloguj sie jako administrator"
 	 	redirect_to root_url	 	
 	 end
-  end
+  end  
   
-  #private 
-  #def news_layout
-  	#if(is_admin_logged)
-  	#	"admin_panel"
-  	#else
-  	#	"application"
-  	#end
-  #end
 end

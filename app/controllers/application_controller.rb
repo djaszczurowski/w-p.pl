@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   layout "application"
+  
   helper_method :admin_panel
   helper_method :current_user
   helper_method :is_admin_logged

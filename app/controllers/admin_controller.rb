@@ -1,5 +1,6 @@
 # encoding: utf-8
 class AdminController < ApplicationController
+  
   layout "admin_panel"
   
   def new
@@ -12,8 +13,7 @@ class AdminController < ApplicationController
   
   def news_managment  
   	@news = News.all  	
-    respond_to do |format|
-    	
+    respond_to do |format|    	
       format.html # index.html.erb
       format.xml  { render :xml => @news }
     end

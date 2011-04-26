@@ -1,7 +1,8 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  
-  layout :layout_sort
+    
+  layout "admin_panel", :only => [:edit, :index]
+  layout "application", :except => [:edit, :index]
   
   # GET /users
   # GET /users.xml
