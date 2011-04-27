@@ -1,9 +1,7 @@
 # encoding: utf-8
 class PostulatesController < ApplicationController
-
-	layout "admin_panel", :only => [:edit, :index]
-	layout "application", :except => [:edit, :index]
 	
+	layout :get_postulates_layout
 	before_filter :is_admin_logged, :only => :edit
 
   @@per_page = 2
@@ -101,4 +99,13 @@ class PostulatesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def get_postulates_layout
+  	if(action_name == "show")
+  		"application"
+  	else
+  		"admin_panel"
+  	end
+  end
+  
 end

@@ -3,6 +3,18 @@ class AdminController < ApplicationController
   
   layout "admin_panel"
   
+  def view_settings
+  	@settings = ViewSettings.first	
+    respond_to do |format|
+      format.html # 
+      format.xml  { render :xml => @settings }
+    end
+  end
+  
+  def contact_settings
+  	
+  end
+  
   def new
   	
   end

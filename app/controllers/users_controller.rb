@@ -1,13 +1,8 @@
 # encoding: utf-8
 class UsersController < ApplicationController
 
-    
-  layout "admin_panel", :only => [:edit, :index]
-  layout "application", :except => [:edit, :index]
-
+  layout :get_users_layout
   
-  layout :layout_sort
-
   @@per_page = 2
 
   def self.per_page
@@ -136,4 +131,14 @@ class UsersController < ApplicationController
     end
   end
 
+ def get_users_layout
+  	if(action_name == "show" || action_name == "new" || action_name == "edit")
+  		"application"
+  	else if(action_name == "edit_by_admin")
+  		"admin_panel"
+  	else
+  		"admin_panel"
+  	end
+  	end
+  end
 end

@@ -1,4 +1,5 @@
 WPPl::Application.routes.draw do 
+  
   # HOME PAGE ACTIONS
    	  # postulates
    	  match "/postulaty" => "pages#postulates", :as => 'postulates'
@@ -55,10 +56,20 @@ WPPl::Application.routes.draw do
 	  
 	  # admin postulates_managment section
 	  match "admin/postulates" => "postulates#index", :as => "postulates_managment"
-	  match "amdin/postulates/:id/edit" => "postulates#edit", :as => "edit_postulate" 
+	  match "admin/postulates/:id/edit" => "postulates#edit", :as => "edit_postulate" 
 	  match "admin/postulates/new" => "postulates#new", :as => "new_postulate"
-   
+	  
+	  # view settings
+	  match "admin/view_settings" => "view_settings#edit", :as => "viewsettings"
+   	  	
+   	  # contact settings
+   	  match "admin/contact_settings" => "contact_settings#edit", :as => "contactsettings"
+   	  
+   	  
    # RESOURCES - TO MODIFY
+   	 
+	  resources :view_settings 
+	  resources :contact_settings  	 
 	  resources :pages
 	  resources :sessions
 	  resources :users

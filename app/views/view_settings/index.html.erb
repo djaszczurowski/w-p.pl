@@ -1,0 +1,37 @@
+<h1>Listing view_settings</h1>
+
+<table>
+  <tr>
+    <th>News per page</th>
+    <th>News on main</th>
+    <th>Users per page</th>
+    <th>Comments per page</th>
+    <th>Postulates per page</th>
+    <th>Categories per page</th>
+    <th>Date length</th>
+    <th>News length</th>
+     <th></th>
+    <th></th>
+    <th></th> 
+  </tr>
+
+<% @view_settings.each do |view_setting| %>
+  <tr>
+    <td><%= view_setting.news_per_page %></td>
+    <td><%= view_setting.news_on_main %></td>
+    <td><%= view_setting.users_per_page %></td>
+    <td><%= view_setting.comments_per_page %></td>
+    <td><%= view_setting.postulates_per_page %></td>
+    <td><%= view_setting.categories_per_page %></td>
+    <td><%= view_setting.date_length %></td>
+    <td><%= view_setting.news_length %></td>
+	<td><%= link_to 'Show', view_setting%></td>
+    <td><%= link_to 'Edit', edit_view_setting_path(view_setting) %></td>
+    <td><%= link_to 'Destroy', view_setting, :confirm => 'Are you sure?', :method => :delete %></td> 
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New View setting', new_view_setting_path %>

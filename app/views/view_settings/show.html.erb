@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>News per page:</b>
+  <%= @view_setting.news_per_page %>
+</p>
+
+<p>
+  <b>News on main:</b>
+  <%= @view_setting.news_on_main %>
+</p>
+
+<p>
+  <b>Users per page:</b>
+  <%= @view_setting.users_per_page %>
+</p>
+
+<p>
+  <b>Comments per page:</b>
+  <%= @view_setting.comments_per_page %>
+</p>
+
+<p>
+  <b>Postulates per page:</b>
+  <%= @view_setting.postulates_per_page %>
+</p>
+
+<p>
+  <b>Categories per page:</b>
+  <%= @view_setting.categories_per_page %>
+</p>
+
+<p>
+  <b>Date length:</b>
+  <%= @view_setting.date_length %>
+</p>
+
+<p>
+  <b>News length:</b>
+  <%= @view_setting.news_length %>
+</p>
+
+
+<%= link_to 'Edit', edit_view_setting_path(@view_setting) %> |
+<%= link_to 'Back', view_settings_path %>

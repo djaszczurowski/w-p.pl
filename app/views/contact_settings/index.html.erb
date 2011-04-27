@@ -1,0 +1,23 @@
+<h1>Listing contact_settings</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contact_settings.each do |contact_setting| %>
+  <tr>
+    <td><%= contact_setting.email %></td>
+    <td><%= link_to 'Show', contact_setting %></td>
+    <td><%= link_to 'Edit', edit_contact_setting_path(contact_setting) %></td>
+    <td><%= link_to 'Destroy', contact_setting, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contact setting', new_contact_setting_path %>

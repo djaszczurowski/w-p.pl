@@ -1,12 +1,10 @@
 # encoding: utf-8
 class PagesController < ApplicationController
-<<<<<<< HEAD
+
  
  layout "admin_panel", :only => :admin_log
  layout "application", :except => :admin_log
-=======
 
->>>>>>> b975a7fdb76f629b3a831192f35688d4428873cc
 	#before_filter :authenticate_admin, :only => :admin
   helper_method :admin_panel
 

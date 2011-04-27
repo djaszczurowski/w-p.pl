@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+  <head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	  <title>view_settings.html</title>
+	  <%= javascript_include_tag :defaults %>
+	  <%= yield :head %>
+  </head>
+  <body>
+  	<br/><br/>
+  	<!--><table>
+  		<th></th>
+  		<th></th>
+  		
+  		<td>Liczba news'ów na stronie w panelu admina: '</td>
+  		<td> <%=@settings.news_per_page %></td>
+  		
+  		<td>Liczba news'ów na głównej:</td>
+  		<td><%= @settings.news_on_main%></td>
+  		
+  		<td>Liczba komentarzy na stronie:  </td>
+  		<td><%= @settings.comments_per_page%></td>
+ 		
+ 		<td>Liczba postulatów na stronie:</td>
+ 		<td><%= @settings.postulates_per_page%></td>
+ 		
+ 		<td>Liczba użytkowników na stronie:</td>
+ 		<td><%= @settings.users_per_page%></td>
+ 		
+ 		<td>Liczba znaków w dacie: </td> 
+ 		<td><%= @settings.date_length%></td>
+ 		
+ 		<td>Liczba znaków wyświetlanych dla newsa:</td>	
+ 		<td><%= @settings.news_length%></td>
+ 		
+ 		<td>Liczba kategorii na stronie:</td>
+ 		<td><%= @settings.categories_per_page%></td>	
+   </table> -->
+  
+  <%= form_for(@settings) do |f| %>
+    
+
+    <div class="field">
+      <%= f.label "Liczba news'ów na stronie w panelu admina:" %><br />
+      <%= f.text_field :news_per_page %>
+    </div>
+    <div class="field">
+      <%= f.label "Liczba news'ów na głównej" %><br />
+      <%= f.text_field :news_on_main %>
+    </div>
+    <div class="field">
+      <%= f.label "Liczba komentarzy na stronie: " %><br />
+      <%= f.text_field :comments_per_page %>
+    </div>
+    <div class="field">
+      <%= f.label "Liczba postulatów na stronie:" %><br />
+      <%= f.text_field :postulates_per_page %>
+    </div>
+    <div>
+      <%= f.label "Liczba użytkowników na stronie:"%><br/>
+      <%= f.password_field :users_per_page%>
+    </div>
+    <div>
+    	<%= f.label "Liczba znaków w dacie:" %><br />
+	    <%= f.text_field :date_length %>
+    </div>    
+	<div>
+    	<%= f.label "Liczba znaków wyświetlanych dla newsa:" %><br />
+	    <%= f.text_field :news_length %>
+    </div>    
+	<div>
+		<%= f.label "Liczba kategorii na stronie:" %><br />
+	    <%= f.text_field :categories_per_page %>
+	</div>
+    <div class="actions"><br />
+      <%= f.submit %>
+    </div>
+  <% end %>
+  
+  
+  </body>
+</html>

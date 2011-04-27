@@ -1,15 +1,13 @@
 # encoding: utf-8
 class NewsController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
-
-  layout "admin_panel", :only => [:edit, :index]
-  layout "application", :except => [:edit, :index]
   
+  layout :get_news_layout
   
   helper_method :change_is_showing_comments
   helper_method :is_showing_comments
   
-  @@per_page = 2
+  @@per_page = 2  
 
   def self.per_page
     @@per_page
@@ -80,6 +78,7 @@ class NewsController < ApplicationController
     end
   end
 
+  
   def show
     @news = News.find(params[:id])
 
@@ -88,6 +87,7 @@ class NewsController < ApplicationController
       format.xml  { render :xml => @news }
     end
   end
+
 
   # GET /news/new
   # GET /news/new.xml
@@ -165,5 +165,13 @@ class NewsController < ApplicationController
 	 	redirect_to root_url	 	
 	 end
   end  
+  
+  def get_news_layout
+  	if(action_name == "show" || action_name == "filter_news")
+  		"application"
+  	else
+  		"admin_panel"
+  	end
+  end
   
 end
