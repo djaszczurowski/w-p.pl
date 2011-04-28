@@ -26,7 +26,7 @@
     (<%= (Date.current() - @user.registered).to_i %> days ago)
   </p>
 
-  <% if is_admin_logged %>
+  <% if @user.privilegesLevel > 0 %>
     <p>
       <b>News:</b>
       <%= news = News.where(:user_id => @user.user_id).size %>
@@ -43,7 +43,8 @@
 
     <p>
       <b>Postulates:</b>
-      <%= Postulate.where(:user_id => @user.user_id).size %><br/>
+      <%= postulates = Postulate.where(:user_id => @user.user_id).size %>
+      (<%= (postulates / (Date.current() - @user.registered).to_d).ceil(3) %> per day)<br/>
       <%= link_to 'Show last', Postulate.where(:user_id => @user.user_id).last %> |
       <%= link_to 'Show all', filter_postulates_path(@user.user_id) %>
     </p>
@@ -95,7 +96,7 @@
     (<%= ( (Date.current() - @user.registered).to_i) %> dni temu)
   </p>
 
-  <% if is_admin_logged %>
+  <% if @user.privilegesLevel > 0 %>
     <p>
       <b>Newsy:</b>
       <%= news = News.where(:user_id => @user.user_id).size %>
@@ -112,7 +113,8 @@
 
     <p>
       <b>Postulaty:</b>
-      <%= Postulate.where(:user_id => @user.user_id).size %><br />
+      <%= postulates = Postulate.where(:user_id => @user.user_id).size %>
+      (<%= (postulates / (Date.current() - @user.registered).to_d).ceil(3) %> dziennie)<br/>
       <%= link_to 'Pokaż ostatni', Postulate.where(:user_id => @user.user_id).last %> |
       <%= link_to 'Pokaż wszystkie', filter_postulates_path(@user.user_id) %>
     </p>
