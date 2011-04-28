@@ -11,17 +11,39 @@ class SessionsController < ApplicationController
 	
   def create  	
 		user = User.authenticate(params[:session][:username],params[:session][:password])
-		if user				
-			if(session[:log_as_admin])
-				if user.privilegesLevel > 0
-					sign_in(user)	
-					redirect_to news_managment_url
-				else					
-					redirect_to admin_url, :notice => "Podano login zwyklego uzytkownika"
+		if user		
+			if(is_user_banned(user))
+				puts "dupa"
+				puts user.banned.to_s
+				if(user.banned < Date.current())
+					user.banned = nil
+					user.save
+					if(session[:log_as_admin])
+						if user.privilegesLevel > 0
+							sign_in(user)	
+							redirect_to news_managment_url
+						else					
+							redirect_to admin_url, :notice => "Podano login zwyklego uzytkownika"
+						end
+					else
+						sign_in(user)					
+						redirect_to :back, :notice => 'Zalogowany'
+					end
+				else
+					redirect_to root_url
+				end	
+			else							
+				if(session[:log_as_admin])
+					if user.privilegesLevel > 0
+						sign_in(user)	
+						redirect_to news_managment_url
+					else					
+						redirect_to admin_url, :notice => "Podano login zwyklego uzytkownika"
+					end
+				else
+					sign_in(user)					
+					redirect_to :back, :notice => 'Zalogowany'
 				end
-			else
-				sign_in(user)					
-				redirect_to :back, :notice => 'Zalogowany'
 			end
 		else
       flash.now[:error] = "Niepoprawne haslo lub login"			

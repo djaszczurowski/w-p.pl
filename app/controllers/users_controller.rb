@@ -148,15 +148,24 @@ class UsersController < ApplicationController
   def ban_user()  	
   	user = User.find(params[:id])  	
   	if(params[:time].to_s == 7.to_s)  		
-  		user.banned = Time.now + 2.days.from_now
+  		puts Date.current()
+  		user.banned = Date.current() + 7.days
+  		puts user.banned
   		user.save
   	else
-  		user.banned = Time.now + 999.years.from_now
+  		user.banned = Date.current() + 999.years
   		user.save  	
   	end
   	
   	inform_user
-  	redirect_to users_managment_path
+  	redirect_to edit_user_by_admin_path(user)
+  end
+  
+  def cancel_user_ban()
+  	user = User.find(params[:id])
+  	user.banned = nil
+  	user.save
+  	redirect_to edit_user_by_admin_path(user)
   end
   
   def inform_user

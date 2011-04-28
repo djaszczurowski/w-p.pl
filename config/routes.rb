@@ -55,6 +55,7 @@ WPPl::Application.routes.draw do
 	  match "admin/users/:id/edit" => "users#edit_by_admin", :as => "edit_user_by_admin"
 	  match "admin/users/new" => "users#new", :as => "new_user"
 	  match "admin/users/ban/:id/:time" => "users#ban_user", :as => "ban_user"
+	  match "admin/users/:id/cancel_ban" => "users#cancel_user_ban", :as => "cancel_user_ban"
 	  
 	  # admin postulates_managment section
 	  match "admin/postulates" => "postulates#index", :as => "postulates_managment"

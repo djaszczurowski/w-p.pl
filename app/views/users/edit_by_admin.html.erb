@@ -1,27 +1,43 @@
-<%= form_for(@user) do |f| %>
-   
+<%= javascript_include_tag :defaults %>
+<%= csrf_meta_tag %>
+<br/>
+<%= form_for(@user) do |f| %>    
     <div class="field">
+      <%= f.label "Zarejestrowany: " + @user.registered.to_s %> <br /> <br />     
+    </div>
       <%= f.label "Użytkownik" %><br />
       <%= f.text_field :username %>
-    </div>
+    </div><br /><br />
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label "Email" %><br />
       <%= f.text_field :email %>
-    </div>
+    </div><br />
     <div class="field">
-      <%= f.label :avatar %><br />
+      <%= f.label "Avatar"  %><br />
       <%= f.text_field :avatar %>
-    </div>
+    </div><br />
    <div class="field">
       <%= f.label "Poziom uprawnień" %><br />
       <%= f.text_field :privilegesLevel %>
+    </div><br />
+    <div class="field">
+      <%= f.label "Status: " + if is_user_banned(@user) 
+      								"Zbanowany do " + @user.banned.to_s
+      							else
+      								"Niezbanowany" 
+      							end%><br />
     </div>
     <div class="actions"><br />
       <%= f.submit "Zapisz"%>
     </div>
+    
     <br/>
-    <%= link_to "Zbanuj użytkownika na 7 dni", ban_user_path(@user.user_id, 7)%>
-    <br/>
-    <%= link_to "Zbanuj użytkownika permanentnie", ban_user_path(@user.user_id, 999)%>
+    	<%= link_to "Zbanuj użytkownika na 7 dni", ban_user_path(@user.user_id, 7)%>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    	<%= link_to "Zbanuj użytkownika permanentnie", ban_user_path(@user.user_id, 999)%>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    	<%= link_to "Odbanuj konto", cancel_user_ban_path(@user)%>
+    <br/><br/>
+    	<%= link_to "Usuń konto", @user, :confirm => "Jesteś pewien?", :method => :delete %>
  <% end %>
   

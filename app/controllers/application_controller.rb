@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
   helper_method :change_language
   helper_method :authorize
   helper_method :get_view_settings 
+  helper_method :is_user_banned
   
+  def is_user_banned(user)
+  	user.banned
+  end
  
   
  def authorize
