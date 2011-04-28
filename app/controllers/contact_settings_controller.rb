@@ -2,6 +2,8 @@ class ContactSettingsController < ApplicationController
   # GET /contact_settings
   # GET /contact_settings.xml
   layout "admin_panel"
+  before_filter :authorize
+  
   def index
     @contact_settings = ContactSetting.all
 

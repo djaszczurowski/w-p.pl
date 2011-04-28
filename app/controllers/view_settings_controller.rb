@@ -2,6 +2,9 @@ class ViewSettingsController < ApplicationController
   # GET /view_settings
   # GET /view_settings.xml
   layout "admin_panel"
+  
+  before_filter :authorize
+  
   def index
     @view_settings = ViewSetting.all
 
@@ -81,4 +84,6 @@ class ViewSettingsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+ 
 end

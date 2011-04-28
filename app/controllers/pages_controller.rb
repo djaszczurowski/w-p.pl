@@ -11,10 +11,10 @@ class PagesController < ApplicationController
   @@pl_titles = ["Strona Główna", "O nas", "Archiwum", "Postulaty", "Kontakt"]
   @@eng_titles = ["Main", "About", "Archive", "Postulates", "Contact"]
   @@page_links = ["/home", "/about", "/archive", "/postulates", "/contact"]
-  @@date_length = 18
-  @@news_length = 40
-  @@news_on_main = 4
-  @@contact_email = "kulessa.marek@gmail.com"
+  @@date_length = ApplicationController.get_view_settings.date_length
+  @@news_length = ApplicationController.get_view_settings.news_length
+  @@news_on_main = ApplicationController.get_view_settings.news_on_main
+  @@contact_email = ApplicationController.get_contact_settings.email
   @@current_page = "/main"
   @@archive_begin_year = 2009
 

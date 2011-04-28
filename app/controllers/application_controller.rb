@@ -9,15 +9,27 @@ class ApplicationController < ActionController::Base
   helper_method :is_admin_logged
   helper_method :is_english_language
   helper_method :change_language
-  helper_method :layout_sort
-	
-  def layout_sort
-  	if(is_admin_logged)
-  		"admin_panel"
-  	else
-  		"application"
-  	end
-  end	
+  helper_method :authorize
+  helper_method :get_view_settings 
+  
+ 
+  
+ def authorize
+ 	if is_admin_logged
+ 		true
+ 	else
+ 		redirect_to admin_path
+ 		false
+ 	end
+ end
+ 
+ def self.get_view_settings
+  	ViewSetting.first
+  end
+  
+  def self.get_contact_settings
+  	ContactSetting.first
+  end
 	
   def is_admin_logged
   	if session[:current_user_id]

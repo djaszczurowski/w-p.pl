@@ -19,7 +19,9 @@
     <div class="actions"><br />
       <%= f.submit "Zapisz"%>
     </div>
-    
-    <%= link_to "Zbanuj użytkownika", root_url%>
+    <br/>
+    <%= link_to "Zbanuj użytkownika na 7 dni", ban_user_path(@user.user_id, 7)%>
+    <br/>
+    <%= link_to "Zbanuj użytkownika permanentnie", ban_user_path(@user.user_id, 999)%>
  <% end %>
   

@@ -1,9 +1,10 @@
 # encoding: utf-8
 class UsersController < ApplicationController
 
+  before_filter :authorize, :only => [:index, :destroy]
   layout :get_users_layout
   
-  @@per_page = 2
+  @@per_page = ApplicationController.get_view_settings.users_per_page
 
   def self.per_page
     @@per_page
@@ -29,6 +30,8 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show	
   		@user = User.find(params[:id])   
+  		puts @user.registered
+  		puts @user.banned
   end
 
   # GET /users/new
@@ -90,7 +93,7 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-
+	@user.registered = Date.current()
     respond_to do |format|
       if @user.save
         format.html { redirect_to(@user, :notice => 'Konto utworzone') }
@@ -141,4 +144,22 @@ class UsersController < ApplicationController
   	end
   	end
   end
+  
+  def ban_user()  	
+  	user = User.find(params[:id])  	
+  	if(params[:time].to_s == 7.to_s)  		
+  		user.banned = Time.now + 2.days.from_now
+  		user.save
+  	else
+  		user.banned = Time.now + 999.years.from_now
+  		user.save  	
+  	end
+  	
+  	inform_user
+  	redirect_to users_managment_path
+  end
+  
+  def inform_user
+  	
+  end	
 end

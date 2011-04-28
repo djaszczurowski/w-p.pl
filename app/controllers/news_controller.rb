@@ -2,16 +2,12 @@
 class NewsController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
   
+  before_filter :authorize, :only => [:index, :delete]
   layout :get_news_layout
   
   helper_method :change_is_showing_comments
   helper_method :is_showing_comments
-  
-  @@per_page = 2  
-
-  def self.per_page
-    @@per_page
-  end
+   
 
   def show_comments
     cookies[:comm] = "yes"
@@ -172,6 +168,11 @@ class NewsController < ApplicationController
   	else
   		"admin_panel"
   	end
+  end
+  
+  @@per_page =  ApplicationController.get_view_settings.news_per_page
+  def self.per_page
+  	@@per_page 
   end
   
 end

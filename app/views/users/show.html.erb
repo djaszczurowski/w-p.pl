@@ -92,14 +92,14 @@
   <p>
     <b>Dołączył:</b>
     <%= @user.registered %>
-    (<%= (Date.current() - @user.registered).to_i %> dni temu)
+    (<%= ( (Date.current() - @user.registered).to_i) %> dni temu)
   </p>
 
   <% if is_admin_logged %>
     <p>
       <b>Newsy:</b>
       <%= news = News.where(:user_id => @user.user_id).size %>
-      (<%= (news / (Date.current() - @user.registered).to_d).ceil(3) %> dziennie)<br/>
+ (<%= (news / (Date.current() - @user.registered).to_d).ceil(3) %> dziennie)<br/> 
       <% news = News.where(:user_id => @user.user_id).last %>
       <% if !news.nil? %>
         <% link_path = "/news/" + news.news_id.to_s + "/hide_comments" %>
@@ -121,7 +121,7 @@
   <p>
     <b>Komentarze:</b>
     <%= comments = Comment.where(:user_id => @user.user_id).size %>
-    (<%= (comments / (Date.current() - @user.registered).to_d).ceil(3) %> dziennie)<br/>
+     (<%= (comments / (Date.current() - @user.registered).to_d).ceil(3) %> dziennie)</br/>
     <%= link_to 'Pokaż ostatni', Comment.where(:user_id => @user.user_id).last %> |
     <%= link_to 'Pokaż wszystkie', filter_comments_path(@user.user_id) %>
   </p>
@@ -134,7 +134,9 @@
   <% end %>
 
   <% if is_admin_logged %>
-    <%= link_to 'Edytuj', edit_user_by_admin_path(@user) %>
+    <%= link_to 'Edytuj', edit_user_by_admin_path(@user) %> &nbsp;&nbsp;<br/>
+    <%= link_to "Zbanuj - 7 dni", ban_user_path(@user.user_id, 7), :confirm => "Jesteś pewien?" %> &nbsp;&nbsp;
+    <%= link_to "Zbanuj - permanentnie", ban_user_path(@user.user_id, 999), :confirm => "Jesteś pewien?" %>
   <% end %>
 <% end %>
   

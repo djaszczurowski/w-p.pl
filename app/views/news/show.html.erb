@@ -150,6 +150,13 @@ tinyMCE.init({
               <%= link_to user.username, user %> &nbsp; &nbsp;
               <i><%= @comment.posted.to_s[0..PagesController.date_length] %></i>
             </td>
+            <td>
+        		<% if is_admin_logged%>
+        		<%= link_to "Zbanuj - 7 dni", ban_user_path(user.user_id, 7)%><br/>
+        		<%= link_to "Zbanuj - permanentnie", ban_user_path(user.user_id, 999)%><br/>
+        		
+        		<% end%>
+        	</td>
           </tr>
         </table>
       </div>

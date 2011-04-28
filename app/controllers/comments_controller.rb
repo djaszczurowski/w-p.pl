@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  @@per_page = 2
+  @@per_page = ApplicationController.get_view_settings.comments_per_page
 
   def self.per_page
     @@per_page

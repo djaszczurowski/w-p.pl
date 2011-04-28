@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CategoriesController < ApplicationController
 
-  @@per_page = 2
+  @@per_page = ApplicationController.get_view_settings.categories_per_page
 
   def self.per_page
     @@per_page

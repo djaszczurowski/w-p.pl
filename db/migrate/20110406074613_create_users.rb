@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :passHash
       t.string :passSalt
       t.int :privilegesLevel
-
+	  
       t.timestamps
     end
   end

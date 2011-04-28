@@ -2,9 +2,9 @@
 class PostulatesController < ApplicationController
 	
 	layout :get_postulates_layout
-	before_filter :is_admin_logged, :only => :edit
+	before_filter :authorize, :only => [:edit, :new, :index, :destroy]
 
-  @@per_page = 2
+  @@per_page = ApplicationController.get_view_settings.postulates_per_page
 
   def self.per_page
     @@per_page
