@@ -104,6 +104,7 @@ class NewsController < ApplicationController
 
   # GET /news/1/edit
   def edit
+  	
   	if is_admin_logged
   		@admin_panel = true
     	@news = News.find(params[:id])

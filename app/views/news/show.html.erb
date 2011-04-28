@@ -27,7 +27,8 @@ tinyMCE.init({
 
 </script>
 
-
+<%= javascript_include_tag :defaults %>
+<%= csrf_meta_tag %>
 <div class="post">
   <% if is_english_language%>
 
@@ -151,11 +152,11 @@ tinyMCE.init({
               <i><%= @comment.posted.to_s[0..PagesController.date_length] %></i>
             </td>
             <td>
-        		<% if is_admin_logged%>
-        		<%= link_to "Zbanuj - 7 dni", ban_user_path(user.user_id, 7)%><br/>
-        		<%= link_to "Zbanuj - permanentnie", ban_user_path(user.user_id, 999)%><br/>
-        		
-        		<% end%>
+	        	<% if is_admin_logged%>
+	        		<%= link_to "Zbanuj - 7 dni", ban_user_path(user.user_id, 7)%><br/>
+	        		<%= link_to "Zbanuj - permanentnie", ban_user_path(user.user_id, 999)%><br/>
+	        		<%= link_to "Usuń komentarz", comment, :confirm => "Jesteś pewien?", :method => :delete %><br/>
+	        	<% end%>
         	</td>
           </tr>
         </table>

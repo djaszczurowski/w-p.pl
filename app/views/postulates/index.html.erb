@@ -2,21 +2,21 @@
 <%= link_to 'Nowy Postulat', new_postulate_path %>
 <br/><br/>
 <table>
-  <tr>
-    <th>Uniformlink</th>
-    <th>Commentary</th>
+  <tr>    
+    <th>Tytuł</th>
+    <th>Treść</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @postulates.each do |postulate| %>
-  <tr>
-    <td><%= postulate.uniformLink %></td>
+  <tr>    
     <td><%= postulate.commentary %></td>
-    <td><%= link_to 'Show', postulate %></td>
-    <td><%= link_to 'Edit', edit_postulate_path(postulate) %></td>
-    <td><%= link_to 'Destroy', postulate, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= postulate.content %></td>
+    <td><%= link_to 'Pokaż', postulate %></td>
+    <td><%= link_to 'Edytuj', edit_postulate_path(postulate) %></td>
+    <td><%= link_to 'Usuń', postulate, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

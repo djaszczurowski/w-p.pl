@@ -19,6 +19,7 @@ WPPl::Application.routes.draw do
   # ROOT 
    	  root :to => 'pages#home'  
   	  match "/home" => "pages#home"	
+  	  
   # LANGUAGE ACTION
   	  match "/language" => "application#change_language", :as => "change_language"
 

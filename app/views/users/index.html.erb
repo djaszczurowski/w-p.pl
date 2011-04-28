@@ -7,7 +7,7 @@
     <th>Email</th>
     <!--<th>Passhash</th>
     <th>Passsalt</th>-->
-    <th>Poziom uprawnień</th>
+    <th>Uprawnienia</th>
     <th></th>
     <th></th>
     <th></th>
@@ -20,13 +20,13 @@
     <!--<td><%= user.passHash %></td>
     <td><%= user.passSalt %></td>-->
     <td><%= user.privilegesLevel %></td>
-    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Pokaż', user %></td>
     <% if is_admin_logged %>
-    	<td><%= link_to 'Edit', edit_user_by_admin_path(user) %></td>
+    	<td><%= link_to 'Edytuj', edit_user_by_admin_path(user) %></td>
     <% else %>
-    	<td><%= link_to 'Edit', edit_user_path(user) %></td>
+    	<td><%= link_to 'Edytuj', edit_user_path(user) %></td>
     <% end%>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Usuń', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

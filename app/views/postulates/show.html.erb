@@ -1,15 +1,18 @@
+<%= javascript_include_tag :defaults %>
+<%= csrf_meta_tag %>
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Uniformlink:</b>
-  <%= @postulate.uniformLink %>
+  <h2><%= @postulate.commentary %> </h2>
+</p>
+<br/><br/>
+<p> 
+  <%= @postulate.content %>
 </p>
 
-<p>
-  <b>Commentary:</b>
-  <%= @postulate.commentary %>
-</p>
 
 
-<%= link_to 'Edit', edit_postulate_path(@postulate) %> 
-
+<% if is_admin_logged %>
+	<%= link_to 'Edytuj', edit_postulate_path(@postulate) %> 
+	<%= link_to "Usuń", @postulate, :confirm => "Jesteś pewien?", :method => :delete %>
+<% end%>

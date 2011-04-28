@@ -11,15 +11,19 @@
     </div>
   <% end %>
 
+ 
   <div class="field">
-    <%= f.label :uniformLink %><br />
-    <%= f.text_field :uniformLink %>
-  </div>
-  <div class="field">
-    <%= f.label :commentary %><br />
+    <%= f.label "Tytuł: " %><br />
     <%= f.text_field :commentary %>
   </div>
+  <br/>
+   <div class="field">
+    <%= f.label "Treść: "%><br />
+    <%= f.text_field :content %>
+  </div>
+  <br/> 
   <div class="actions">
     <%= f.submit %>
   </div>
+  <br/>
 <% end %>
