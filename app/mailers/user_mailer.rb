@@ -1,5 +1,9 @@
 class UserMailer < ActionMailer::Base
-  default :from => "from@example.com"
+  default :from => "damian.jaszczurowski@gmail.com"
+  
+  def user_ban_mail_information(user)  	
+  	mail(:to => user.email, :subject => "Zbanowanie konta")
+  end
 
 
 end

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 	helper_method :sign_in
+	helper_method :sign_user_out
   def new
   end
     
@@ -8,7 +9,9 @@ class SessionsController < ApplicationController
     session[:log_as_admin] = false;
     redirect_to root_url, :notice => "Wylogowano!"
   end
-	
+  
+   
+
   def create  	
 		user = User.authenticate(params[:session][:username],params[:session][:password])
 		if user		
@@ -54,7 +57,7 @@ class SessionsController < ApplicationController
   def sign_in(user)
 	  #cookies.permanent.signed[:remember_token] = [user.id, user.passSalt]
 	  #@current_user = user
-	  
+
 	  session[:current_user_id] = user.id
 	  @current_user = user
 	  #cookies[:remember_token] = { :value => user.id,

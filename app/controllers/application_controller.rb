@@ -12,6 +12,14 @@ class ApplicationController < ActionController::Base
   helper_method :authorize
   helper_method :get_view_settings 
   helper_method :is_user_banned
+  helper_method :user_ban_info
+  
+  
+  @user_ban_info = nil
+  
+  def user_ban_info
+  	@user_ban_info
+  end
   
   def is_user_banned(user)
   	user.banned
@@ -62,7 +70,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_user  	  
-  	@current_user ||= session[:current_user_id] if session[:current_user_id]  		
+  	@current_user ||= session[:current_user_id] if session[:current_user_id] 
   	return @current_user
   end
  

@@ -58,18 +58,23 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-  	if(is_admin_logged)
-  		@user = User.find(params[:id])
-  	else
-	  	if(session[:current_user_id])
-	  		if(session[:current_user_id].to_s == params[:id].to_s)
-	    		@user = User.find(session[:current_user_id])
-	    	else
-	    		redirect_to root_url
-	    	end
-	   else
-	   		redirect_to root_url
-	   	end	  
+  	if(User.find(session[:current_user_id]).banned)
+  		session[:current_user_id] = nil
+  		redirect_to root_url
+  	else  		
+	  	if(is_admin_logged)
+	  		@user = User.find(params[:id])
+	  	else
+		  	if(session[:current_user_id])
+		  		if(session[:current_user_id].to_s == params[:id].to_s)
+		    		@user = User.find(session[:current_user_id])
+		    	else
+		    		redirect_to root_url
+		    	end
+		   else
+		   		redirect_to root_url
+		   	end	  
+		end
 	end
   end
 
@@ -156,6 +161,9 @@ class UsersController < ApplicationController
   		user.banned = Date.current() + 999.years
   		user.save  	
   	end
+  	
+  	#sign_out(user)
+  	#UserMailer.user_ban_mail_information(user).deliver
   	
   	inform_user
   	redirect_to edit_user_by_admin_path(user)

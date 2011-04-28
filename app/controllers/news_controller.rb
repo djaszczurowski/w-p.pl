@@ -34,21 +34,26 @@ class NewsController < ApplicationController
   end
 
   def add_comment
-    if !params[:title].to_s.blank? && !params[:content].to_s.blank? 
-      @comment = Comment.new
-
-      @comment.user_id = session[:current_user_id]
-      @comment.news_id = params[:id]
-      @comment.posted = Time.now()
-      @comment.subject = params[:title]
-      @comment.comment = params[:content] 
-
-      @comment.save
-    else
-
-    end
-    cookies[:comm] = "yes"
-    redirect_to "/news/" + params[:id] + "#comments_begin"
+  	if(User.find(session[:current_user_id]).banned)
+  		session[:current_user_id] = nil
+  		redirect_to root_url
+  	else
+	    if !params[:title].to_s.blank? && !params[:content].to_s.blank? 
+	      @comment = Comment.new
+	
+	      @comment.user_id = session[:current_user_id]
+	      @comment.news_id = params[:id]
+	      @comment.posted = Time.now()
+	      @comment.subject = params[:title]
+	      @comment.comment = params[:content] 
+	
+	      @comment.save
+	    else
+	
+	    end
+	    cookies[:comm] = "yes"
+	    redirect_to "/news/" + params[:id] + "#comments_begin"
+	end
   end
 
 	

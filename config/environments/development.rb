@@ -22,5 +22,17 @@ WPPl::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+ 
+  config.action_mailer.smtp_settings = 
+{
+	:address => "smtp.gmail.com",
+	:port => 587,
+	:domain => "damian.jaszczurowski.com",
+	:user_name => "damian.jaszczurowski",
+	:password => "",
+	:authentication => "plain",
+	:enable_starttls_auto => true
+}
+
 end
 
