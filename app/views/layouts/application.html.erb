@@ -102,11 +102,7 @@
                         <h2>Welcome <%= link_to user.username, user %></h2>
                         <ul>
                           <li>
-                            <% if user.avatar? %>
-                              <%= image_tag(user.avatar, :size => "64x64") %>
-                            <% else %>
-                              <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
-                            <% end %>
+                           <%= image_tag(avatar_path, :size => "64x64") %>
                           </li>
                           <li>
                             <%= link_to "Logout", logout_url%>
@@ -157,11 +153,7 @@
                         <h2>Witaj <%= link_to user.username, user %></h2>
                         <ul>
                           <li>
-                            <% if user.avatar? %>
-                              <%= image_tag(user.avatar, :size => "64x64") %>
-                            <% else %>
-                              <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
-                            <% end %>
+                           <%= image_tag(avatar_path, :size => "64x64") %>
                           </li>
                           <li>
                             <%= link_to "Wyloguj", logout_url%>

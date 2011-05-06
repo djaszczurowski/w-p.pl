@@ -1,24 +1,56 @@
 <p id="notice"><%= notice %></p>
+<% if is_admin_logged%>
+<%= link_to 'Edytuj kategorię', edit_category_path(@category) %> 
+<% end%>
+<%if is_english_language%>
+	<p>
+	  <b>Category:</b>
+	  <%= @category.englishName %>
+	</p>
+	
+	<p>
+	  <b>Short description:</b>
+	  <%= @category.englishDescription %>
+	</p>
+	<br/>
+	News that belong to the category:
+	<br/>
+	<table>
+  		<tr>
+  			<th></th>  			
+  		</tr>
+  		<% @category_news.each do |news|%>
+  		<tr>
+			<td><%=link_to news.englishSubject, news%></td>
+		</tr>
+		</table>
+	<% end%>
+<%else %>
+	<p>
+	  <b>Kategoria:</b>
+	  <%= @category.polishName %>
+	</p>
+	
+	<p>
+	  <b>Opis:</b>
+	  <%= @category.polishDescription %>
+	</p>
+	
+	<br/>
+	Wpisy należące do kategorii:
+	<br/>
+	<table>
+  		<tr>
+  			<th></th>  			
+  		</tr>
+  		<% @category_news.each do |news|%>
+  		<tr>
+			<td><%=link_to news.polishSubject, news%></td>
+		</tr>
+		</table>
+	<% end%>
+<%end%>
 
-<p>
-  <b>Polishname:</b>
-  <%= @category.polishName %>
-</p>
-
-<p>
-  <b>Polishdescription:</b>
-  <%= @category.polishDescription %>
-</p>
-
-<p>
-  <b>Englishname:</b>
-  <%= @category.englishName %>
-</p>
-
-<p>
-  <b>Englishdescription:</b>
-  <%= @category.englishDescription %>
-</p>
 
 
-<%= link_to 'Edit', edit_category_path(@category) %> 
+

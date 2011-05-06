@@ -1,10 +1,13 @@
+<%= page_navigator = will_paginate @postulates = @postulates.reverse.take(PagesController.postulates_per_page_admin_panel).paginate(:page => params[:page], :per_page => PagesController.postulates_per_page_admin_panel), :previous_label => "Wstecz ", :next_label => " Dalej" %>
 <br/><br/>
 <%= link_to 'Nowy Postulat', new_postulate_path %>
 <br/><br/>
 <table>
   <tr>    
-    <th>Tytuł</th>
-    <th>Treść</th>
+    <th>Tytuł <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_postulates_path("commentary ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_postulates_path("commentary DESC")%> </th>
+    <th>Treść <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_postulates_path("content ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_postulates_path("content DESC")%> </th>
     <th></th>
     <th></th>
     <th></th>
@@ -20,7 +23,7 @@
   </tr>
 <% end %>
 </table>
-
+<%= page_navigator%>
 <br />
 
 

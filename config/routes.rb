@@ -49,6 +49,7 @@ WPPl::Application.routes.draw do
 	  match "admin/news" => "news#index", :as => "news_managment"
 	  match "admin/news/:id/edit" => "news#edit", :as => "edit_news"
 	  match "admin/news/new" => "news#new", :as => "new_news"
+	  match "admin/news/?sort_type=:type" => "news#index", :as => "sort_news"
 	  
 	  # admin users_managment section
 	  match "admin/users" => "users#index", :as => "users_managment"
@@ -56,11 +57,19 @@ WPPl::Application.routes.draw do
 	  match "admin/users/new" => "users#new", :as => "new_user"
 	  match "admin/users/ban/:id/:time" => "users#ban_user", :as => "ban_user"
 	  match "admin/users/:id/cancel_ban" => "users#cancel_user_ban", :as => "cancel_user_ban"
+	  match "admin/users/?sort_type=:type" => "users#index", :as => "sort_users"
 	  
 	  # admin postulates_managment section
 	  match "admin/postulates" => "postulates#index", :as => "postulates_managment"
 	  match "admin/postulates/:id/edit" => "postulates#edit", :as => "edit_postulate" 
 	  match "admin/postulates/new" => "postulates#new", :as => "new_postulate"
+	  match "admin/postulates/?sort_type=:type" => "postulates#index", :as => "sort_postulates"
+	  
+	  # admin categories_managment section
+	  match "admin/categories" => "categories#index", :as => "categories_managment"
+	  match "admin/categories/:id/edit" => "categories#edit", :as => "edit_categories" 
+	  match "admin/categories/new" => "categories#new", :as => "new_category"
+	  match "admin/categories/?sort_type=:type" => "categories#index", :as => "sort_categories"
 	  
 	  # view settings
 	  match "admin/view_settings" => "view_settings#edit", :as => "viewsettings"

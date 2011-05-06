@@ -14,7 +14,9 @@ class PagesController < ApplicationController
   @@date_length = ApplicationController.get_view_settings.date_length
   @@news_length = ApplicationController.get_view_settings.news_length
   @@news_on_main = ApplicationController.get_view_settings.news_on_main
+  @@news_per_page = ApplicationController.get_view_settings.news_per_page
   @@contact_email = ApplicationController.get_contact_settings.email
+  
   @@current_page = "/main"
   @@archive_begin_year = 2009
 
@@ -52,6 +54,18 @@ class PagesController < ApplicationController
 
   def self.news_length
     @@news_length
+  end
+  
+  def self.postulates_per_page_admin_panel
+  	@@users_per_page = ApplicationController.get_view_settings.postulates_per_page
+  end
+  
+  def self.users_per_page_admin_panel
+  	@@users_per_page = ApplicationController.get_view_settings.users_per_page
+  end
+  
+  def self.news_per_page_admin_panel
+  	@@news_per_page = ApplicationController.get_view_settings.news_per_page
   end
 
   def home

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   layout "application"
-  
+  helper_method :avatar_path
   helper_method :admin_panel
   helper_method :current_user
   helper_method :is_admin_logged
@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
   helper_method :is_user_banned
   helper_method :user_ban_info
   
+  def avatar_path
+  		if User.find(@current_user).avatar && User.find(@current_user).avatar != ""  			
+  			 "http://gravatar.com/avatar/" + Digest::MD5.hexdigest(User.find(@current_user).avatar ).to_s
+  		else
+  			"/images/UserUnknownIcon.jpg"
+  		end
+  end
   
   @user_ban_info = nil
   

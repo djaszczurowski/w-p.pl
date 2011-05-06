@@ -3,11 +3,16 @@
 <br/><br/>
 <table>
   <tr>
-    <th>Użytkownik</th>
-    <th>Email</th>
+    <th>Użytkownik <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_users_path("username ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_users_path("username DESC")%>
+    </th>
+    <th>Email <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_users_path("email ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_users_path("email DESC") %>
+    	</th>
     <!--<th>Passhash</th>
     <th>Passsalt</th>-->
-    <th>Uprawnienia</th>
+    <th>Uprawnienia <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_users_path("privilegesLevel ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_users_path("privilegesLevel DESC") %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,7 +20,7 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.username %></td>
+    <td><%= user.username %> </td>
     <td><%= user.email %></td>
     <!--<td><%= user.passHash %></td>
     <td><%= user.passSalt %></td>-->

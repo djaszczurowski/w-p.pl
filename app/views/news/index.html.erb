@@ -1,13 +1,25 @@
+<%= page_navigator = will_paginate @news = @news.reverse.take(PagesController.news_per_page_admin_panel).paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
+
 <br/><br/> 
 <%= link_to 'Nowy news', new_news_path %>
 <br/><br/>
 <table>
   <tr>
-    <th>Opublikowany</th>
-    <th>Temat pl</th>
-    <th>Treść pl</th>
-    <th>Temat en</th>
-    <th>Treść en</th>
+    <th>Opublikowany <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_news_path("posted ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_news_path("posted DESC")%> </th>
+    </th>
+    <th>Temat pl <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_news_path("polishSubject ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_news_path("polishSubject DESC")%> </th>
+    </th>
+    <th>Treść pl <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_news_path("polishNews ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_news_path("polishNews DESC")%> </th>
+    </th>
+    <th>Temat en <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_news_path("englishSubject ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_news_path("englishSubject DESC")%> </th>
+    </th>
+    <th>Treść en <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_news_path("englishNews ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_news_path("englishNews DESC")%> </th>
+    </th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,7 +27,7 @@
 
 <% @news.each do |news| %>
   <tr>
-    <td><%= news.posted %></td>
+    <td><%= news.posted.to_s[0..PagesController.date_length] %></td>
     <td><%= news.polishSubject %></td>
     <td><%= news.polishNews %></td>
     <td><%= news.englishSubject %></td>
@@ -26,6 +38,6 @@
   </tr>
 <% end %>
 </table>
-
+ <%= page_navigator %>
 <br />
 

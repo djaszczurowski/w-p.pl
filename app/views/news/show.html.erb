@@ -32,7 +32,8 @@ tinyMCE.init({
 <div class="post">
   <% if is_english_language%>
 
-    <h2 class="title"> <%= @news.englishSubject %>  </h2><br />
+    <h2 class="title"> <%= @news.englishSubject %>  </h2>
+    	&nbsp;&nbsp;  <%= link_to @news_category.englishName, @news_category %>	<br/>
     <p class="meta">
       <span class="date"><%= @news.posted.to_s[0..PagesController.date_length] %></span>
       <% user = User.find(@news.user_id) %>
@@ -76,7 +77,8 @@ tinyMCE.init({
 
   <%  else %>
 
-    <h2 class="title"> <%= @news.polishSubject %>  </h2><br />
+    <h2 class="title"> <%= @news.polishSubject %>  </h2>
+    &nbsp;&nbsp;  <%= link_to @news_category.polishName, @news_category %>	<br/>
     <p class="meta">
       <span class="date"><%= @news.posted.to_s[0..PagesController.date_length] %></span>
       <%  user = User.find(@news.user_id) %>

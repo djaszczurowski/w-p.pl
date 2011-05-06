@@ -40,23 +40,26 @@
   
   <%= form_for(@settings) do |f| %>
     
-
+ 	<div class="field">
+      <%= f.label "Liczba news'ów na głównej" %><br />
+      <%= f.text_field :news_on_main %>
+    </div>
+    
     <div class="field">
       <%= f.label "Liczba news'ów na stronie w panelu admina:" %><br />
       <%= f.text_field :news_per_page %>
     </div>
-    <div class="field">
-      <%= f.label "Liczba news'ów na głównej" %><br />
-      <%= f.text_field :news_on_main %>
-    </div>
-    <div class="field">
+    
+   <div class="field">
       <%= f.label "Liczba komentarzy na stronie: " %><br />
       <%= f.text_field :comments_per_page %>
     </div>
+    
     <div class="field">
       <%= f.label "Liczba postulatów na stronie:" %><br />
       <%= f.text_field :postulates_per_page %>
     </div>
+    
     <div>
       <%= f.label "Liczba użytkowników na stronie:"%><br/>
       <%= f.password_field :users_per_page%>
@@ -64,15 +67,18 @@
     <div>
     	<%= f.label "Liczba znaków w dacie:" %><br />
 	    <%= f.text_field :date_length %>
-    </div>    
+    </div> 
+       
 	<div>
     	<%= f.label "Liczba znaków wyświetlanych dla newsa:" %><br />
 	    <%= f.text_field :news_length %>
-    </div>    
+    </div> 
+       
 	<div>
 		<%= f.label "Liczba kategorii na stronie:" %><br />
 	    <%= f.text_field :categories_per_page %>
 	</div>
+	
     <div class="actions"><br />
       <%= f.submit %>
     </div>

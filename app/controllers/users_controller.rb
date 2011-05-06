@@ -13,9 +13,14 @@ class UsersController < ApplicationController
   
   # GET /users
   # GET /users.xml
-  def index
+  def index  	
+  	 
   	if(is_admin_logged)
-	    @users = User.all
+  	    if params[:sort_type]
+	    	@users = User.all(:order => params[:sort_type].to_s)
+	    else
+	   		@users = User.all
+	   	end
 	
 	    respond_to do |format|
 	      format.html # index.html.erb
@@ -29,7 +34,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show	
-  		@user = User.find(params[:id])   
+  		@user = User.find(params[:id]) 
+  		if @user.avatar && @user.avatar  != ""
+  			@avatar_path = "http://gravatar.com/avatar/" + Digest::MD5.hexdigest(@user.avatar).to_s
+  		else
+  			@avatar_path = "/images/UserUnknownIcon.jpg"
+  		end
+  		
   		puts @user.registered
   		puts @user.banned
   end
@@ -175,6 +186,8 @@ class UsersController < ApplicationController
   	user.save
   	redirect_to edit_user_by_admin_path(user)
   end
+  
+  
   
   def inform_user
   	

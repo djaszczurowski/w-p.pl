@@ -12,12 +12,8 @@
   </p>
 
   <p>
-    <b>Avatar:</b>
-    <% if @user.avatar? %>
-      <%= image_tag(@user.avatar, :size => "64x64") %>
-    <% else %>
-      <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
-    <% end %>
+    <b>Avatar:</b>    
+      <%= image_tag(@avatar_path, :size => "64x64") %>    
   </p>
 
   <p>
@@ -83,11 +79,7 @@
 
   <p>
     <b>Avatar:</b>
-    <% if @user.avatar? %>
-      <%= image_tag(@user.avatar, :size => "64x64") %>
-    <% else %>
-      <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
-    <% end %>
+    <%= image_tag(@avatar_path, :size => "64x64") %>
   </p>
 
   <p>

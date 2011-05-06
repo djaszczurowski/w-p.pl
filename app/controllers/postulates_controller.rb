@@ -13,7 +13,11 @@ class PostulatesController < ApplicationController
   # GET /postulates
   # GET /postulates.xml
   def index
-    @postulates = Postulate.all
+  	if params[:sort_type]
+    	@postulates = Postulate.all(:order => params[:sort_type].to_s)
+    else
+    	@postulates = Postulate.all
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @postulates }

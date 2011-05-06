@@ -1,7 +1,12 @@
 # encoding: utf-8
 class CategoriesController < ApplicationController
-
+	
+  before_filter :authorize, :only => [:index, :destroy, :new]
+  layout :get_users_layout
+  
   @@per_page = ApplicationController.get_view_settings.categories_per_page
+
+  
 
   def self.per_page
     @@per_page
@@ -10,7 +15,11 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
   def index
-    @categories = Category.all
+  	if params[:sort_type]
+    	@categories = Category.all(:order => params[:sort_type].to_s)
+    else
+    	@categories = Category.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -22,7 +31,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1.xml
   def show
     @category = Category.find(params[:id])
-
+	@category_news = News.where(:category_id => @category.id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @category }
@@ -87,5 +96,13 @@ class CategoriesController < ApplicationController
       format.html { redirect_to(categories_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def get_users_layout
+  	if(action_name != "show")
+  		"admin_panel"
+  	else
+  		"application"
+  	end
   end
 end

@@ -1,11 +1,20 @@
-<h1>Listing categories</h1>
-
+<br/><br/>
+<%= link_to 'Nowa kategoria', new_category_path %>
+<br/><br/>
 <table>
   <tr>
-    <th>Polishname</th>
-    <th>Polishdescription</th>
-    <th>Englishname</th>
-    <th>Englishdescription</th>
+    <th>Tytuł pl <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_categories_path("polishName ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_categories_path("polishName DESC")%> </th>
+    </th>
+    <th>Opis pl <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_categories_path("polishDescription ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_categories_path("polishDescription DESC")%> </th>
+    </th>
+    <th>Tytuł en <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_categories_path("englishName ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_categories_path("englishName DESC")%> </th>
+    </th>
+    <th>Opis en <%= link_to image_tag("/images/sorting_icons/ascending.gif"), sort_categories_path("englishDescription ASC")%>
+    	<%= link_to image_tag("/images/sorting_icons/descending.gif"), sort_categories_path("englishDescription DESC")%> </th>
+    </th>
     <th></th>
     <th></th>
     <th></th>
@@ -26,4 +35,4 @@
 
 <br />
 
-<%= link_to 'New Category', new_category_path %>
+

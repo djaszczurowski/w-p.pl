@@ -60,7 +60,11 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.xml
   def index
-    @news = News.all
+  	if params[:sort_type]
+    	@news = News.all(:order => params[:sort_type].to_s)
+    else
+    	@news = News.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,7 +86,7 @@ class NewsController < ApplicationController
   
   def show
     @news = News.find(params[:id])
-
+	@news_category = Category.find(@news.category_id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @news }

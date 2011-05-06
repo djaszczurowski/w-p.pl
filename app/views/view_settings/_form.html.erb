@@ -13,49 +13,50 @@
 	<table>
 		<th></th>
 		<th></th>
+		
 		<tr>
-		<td><%= f.label "Liczba news'ów w panelu administracyjnym " %></td>
-		<td><%= f.text_field :news_per_page %></td>
+		<td><%= f.label "Liczba news'ów w panelu administracyjnym   " %></td>
+		<td><%= f.text_field :news_per_page, :size => 1 %></td>
 		</tr>
 		
 		<tr>
 		<td><%= f.label "Liczba news'ów na głównej:" %></td>
-		<td><%= f.text_field :news_on_main %></td>
+		<td><%= f.text_field :news_on_main, :size => 1%></td>
 		</tr>
 		
 		<tr>
 		<td><%= f.label "Liczba użytkowników na stronie: " %></td>
-		<td><%= f.text_field :users_per_page %></td>
+		<td><%= f.text_field :users_per_page, :size => 1 %></td>
 		</tr>
 		
 		<tr>
 		<td> <%= f.label "Liczba komentarzy do publikacji: " %></td>
-		<td><%= f.text_field :comments_per_page %></td>
+		<td><%= f.text_field :comments_per_page, :size => 1 %></td>
 		</tr>
 		
 		<tr>
 		<td><%= f.label "Liczba postulatów: " %></td>
-		<td> <%= f.text_field :postulates_per_page %></td>
+		<td> <%= f.text_field :postulates_per_page, :size => 1 %></td>
 		</tr>
 		
 		<tr>
 		<td><%= f.label "Liczba kategorii na stronie: " %></td>
-		<td><%= f.text_field :categories_per_page %></td>
+		<td><%= f.text_field :categories_per_page, :size => 1 %></td>
 		</tr>
 		
 		<tr>
 		<td><%= f.label "Liczba znaków dla daty: " %></td>
-		<td><%= f.text_field :date_length %></td>
+		<td><%= f.text_field :date_length, :size => 1 %></td>
 		</tr>
 		
 		<tr>
 		<td><%= f.label "Liczba znaków dla newsa: " %></td>
-		<td><%= f.text_field :news_length %></td>
+		<td><%= f.text_field :news_length, :size => 1 %></td>
 		</tr>
 		
 	</table>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Uaktualnij" %>
   </div>
 <% end %>

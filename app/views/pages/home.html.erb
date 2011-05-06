@@ -5,11 +5,12 @@
     <%= page_navigator = will_paginate @news = @news.reverse.take(PagesController.news_on_main).paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
   <% end %><br/>
 
-  <% @news.each do |news| %>
-
+  <% @news.each do |news| category = Category.find(news.category_id) %>
+	
     <% if is_english_language%>
 
       <h2 class="title"> <%= news.englishSubject %>  </h2>
+      &nbsp;&nbsp;  <%= link_to category.englishName, category %>	<br/>
       <p class="meta">
         <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
         <%  user = User.find(news.user_id) %>
@@ -38,6 +39,7 @@
     <%  else %>
 
       <h2 class="title"> <%= news.polishSubject %>  </h2>
+      &nbsp;&nbsp;  <%= link_to category.polishName, category %>	<br/>
       <p class="meta">
         <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
         <%  user = User.find(news.user_id) %>
