@@ -125,6 +125,7 @@
                   <%else%>
                     <li>
                       <h2>Login </h2>
+                      <span style='color:red'><%= flash[:notice] %></span><br/>
                       <ul>
                         <%= form_for(:session, :url => sessions_path) do |f| %>
                           <p class="field">
@@ -179,7 +180,7 @@
                   <%else%>
                     <li>
                       <h2>Loguj </h2>
-                      
+                      <span style='color:red'><%= flash[:notice] %></span><br/>
                       <ul>
                         <%= form_for(:session, :url => sessions_path) do |f| %>
                           <p class="field">
