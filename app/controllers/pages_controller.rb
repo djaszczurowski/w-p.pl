@@ -72,6 +72,7 @@ class PagesController < ApplicationController
     @@current_page = "/main"
   	@title = "Strona Główna"
     @news = News.all
+    @comments = Comment.all
   	respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @news }

@@ -1,6 +1,7 @@
 <div class="post">
-  <% if is_english_language %>
+  <% if is_english_language %>  
     <%= page_navigator = will_paginate @news = @news.reverse.take(PagesController.news_on_main).paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Previous ", :next_label => " Next" %>
+  	
   <% else %>
     <%= page_navigator = will_paginate @news = @news.reverse.take(PagesController.news_on_main).paginate(:page => params[:page], :per_page => NewsController.per_page), :previous_label => "Wstecz ", :next_label => " Dalej" %>
   <% end %><br/>

@@ -39,6 +39,8 @@ class ViewSettingsController < ApplicationController
   # GET /view_settings/1/edit
   def edit
     @view_setting = ViewSetting.first
+    w = @view_setting.news_on_main
+    @view_setting.news_on_main = w
   end
 
   # POST /view_settings

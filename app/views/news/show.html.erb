@@ -139,8 +139,8 @@ tinyMCE.init({
           <tr>
             <% user = User.find(@comment.user_id) %>
             <td>
-              <% if user.avatar? %>
-                <%= image_tag(user.avatar, :size => "64x64") %>
+              <% if user.avatar? && user.avatar != '' %>
+                <%= image_tag("http://gravatar.com/avatar/" + Digest::MD5.hexdigest(user.avatar).to_s, :size => "64x64") %>
               <% else %>
                 <%= image_tag("/images/UserUnknownIcon.jpg", :size => "64x64") %>
               <% end %>
