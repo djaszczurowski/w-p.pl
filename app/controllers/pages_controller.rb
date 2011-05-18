@@ -120,14 +120,47 @@ class PagesController < ApplicationController
   end
 
   def send_email
-    email = @@contact_email
-    subject = "test"
-    user = "markkkk"
-    #UserMailer.xxx
-    #UserMailer.contact_email(user, email, subject).deliver
-    #puts UserMailer.methods
-    #UserMailer.welcome_email(user).deliver
-    puts UserMailer.method_defined?("welcome_email")
+#    email = @@contact_email
+#    subject = "test"
+#    user = "markkkk"
+#    #UserMailer.xxx
+#    #UserMailer.contact_email(user, email, subject).deliver
+#    #puts UserMailer.methods
+#    UserMailer.welcome_email(user).deliver
+#    puts UserMailer.method_defined?("welcome_email")
+
+#    Mail.defaults do
+#      smtp '127.0.0.1' # Port 25 defult
+#    end
+
+    mail = Mail.new do
+          from 'mark1989@o2.pl'
+            to 'kulessa.marek@gmail.com'
+       subject 'Here is the image you wanted'
+      #    body File.read('body.txt')
+      #add_file {:filename => 'somefile.png', :data => File.read('/somefile.png')}
+    end
+
+    mail.deliver!
+
+#    from_alias = 'marek'
+#    from = 'mark1989@o2.pl'
+#    to_alias = 'myself'
+#    to = 'kulessa.marek@gmail.com'
+#    subject = 'hello'
+#    message = 'how are you ?'
+#
+#    msg = <<END_OF_MESSAGE
+#    From: #{from_alias} <#{from}>
+#    To: #{to_alias} <#{to}>
+#    Subject: #{subject}
+
+    #{message}
+#END_OF_MESSAGE
+#
+#    Net::SMTP.start('localhost') do |smtp|
+#      smtp.send_message msg, from, to
+#    end
 
     redirect_to :back
   end

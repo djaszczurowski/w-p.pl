@@ -25,11 +25,11 @@ WPPl::Application.configure do
  
   config.action_mailer.smtp_settings = 
 {
-	:address => "smtp.gmail.com",
+	:address => "poczta.o2.pl",
 	:port => 587,
-	:domain => "damian.jaszczurowski.com",
-	:user_name => "damian.jaszczurowski",
-	:password => "",
+	:domain => "",
+	:user_name => "projekt_iz",
+	:password => "pietranik",
 	:authentication => "plain",
 	:enable_starttls_auto => true
 }
