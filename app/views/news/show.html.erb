@@ -1,3 +1,19 @@
+<!-- VALIDATION IMPORTS -->
+<% if is_english_language%>
+  <script src="/javascripts/languages/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+<% else %>
+  <script src="/javascripts/languages/jquery.validationEngine-pl.js" type="text/javascript" charset="utf-8"></script>
+<% end %>
+<script src="/javascripts/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+  jQuery(document).ready(function(){
+    // binds form submission and fields to the validation engine
+    jQuery("#comment-form").validationEngine('attach', {bindMethod:"live",promptPosition : "topLeft",scroll:false});
+
+  });
+</script>
+
 <!-- TINY-MCE -->
 <script type="text/javascript" src="/javascripts/tinymce/jscripts/tiny_mce/tiny_mce.js" ></script>
 <script type="text/javascript" >
@@ -51,12 +67,12 @@ tinyMCE.init({
       </p>
     </div>
     <% if !session[:current_user_id].nil? %>
-      <form action=<%= "/news/" + @news.news_id.to_s + "/add_comment" %>>
+      <form id="comment-form" class="formular" name="comment-form" action=<%= "/news/" + @news.news_id.to_s + "/add_comment" %>>
         <table>
           <h3>&nbsp;Add your comment...</h3>
           <tr>
             <td>Title:
-              <input style="width:576px" type="text"  name="title"/>
+              <input class="validate[required]" style="width:576px" type="text"  name="title"/>
             </td>
           </tr>
             <tr>
@@ -96,12 +112,12 @@ tinyMCE.init({
       </p>
     </div>
     <% if !session[:current_user_id].nil? %>
-      <form action=<%= "/news/" + @news.news_id.to_s + "/add_comment" %>>
+      <form id="comment-form" class="formular" name="comment-form" action=<%= "/news/" + @news.news_id.to_s + "/add_comment" %>>
         <table>
           <h3>&nbsp;Dodaj swój komentarz...</h3>
           <tr>
             <td>Tytuł:
-              <input style="width:576px" type="text"  name="title"/>
+              <input class="validate[required]" style="width:576px" type="text"  name="title"/>
             </td>
           </tr>
             <tr>

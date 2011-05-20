@@ -53,7 +53,7 @@ class NewsController < ApplicationController
 	    end
 	    cookies[:comm] = "yes"
 	    redirect_to "/news/" + params[:id] + "#comments_begin"
-	end
+    end
   end
 
 	

@@ -4,6 +4,9 @@ WPPl::Application.routes.draw do
    	  # postulates
    	  match "/postulaty" => "pages#postulates", :as => 'postulates'
   	  match "/postulates" => "pages#postulates", :as => 'postulates'
+      match "/postulates/guns" => "pages#guns", :as => 'guns'
+      match "/postulates/eu" => "pages#eu", :as => 'eu'
+      match "/postulates/insurances" => "pages#insurances", :as => 'insurances'
  
  	  # about
  	  match "/about", :to => 'pages#about', :as => 'about'

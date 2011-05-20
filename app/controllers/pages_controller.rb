@@ -84,6 +84,21 @@ class PagesController < ApplicationController
   	@title = "O nas"
   end
 
+  def guns
+    @@current_page = "/guns"
+  	@title = "Broń"
+  end
+
+  def eu
+    @@current_page = "/eu"
+  	@title = "UE"
+  end
+
+  def insurances
+    @@current_page = "/insurances"
+  	@title = "Ubezpieczenia"
+  end
+
   def archive
     @@current_page = "/archive"
   	@title = "Archiwum"
