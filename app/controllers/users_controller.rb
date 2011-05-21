@@ -174,7 +174,8 @@ class UsersController < ApplicationController
   	end
   	
   	#sign_out(user)
-  	#UserMailer.user_ban_mail_information(user).deliver
+  	@user = user
+  	UserMailer.user_ban_mail_information(@user).deliver
   	
   	inform_user
   	redirect_to edit_user_by_admin_path(user)
