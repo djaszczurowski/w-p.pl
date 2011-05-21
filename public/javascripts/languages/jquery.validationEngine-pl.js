@@ -99,7 +99,7 @@
                 },
                 // --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
 				"onlyLetterNumberSp": {
-                    "regex": /^[0-9a-zA-Z\ \'\.,\?!]+$/,
+                    "regex": /^[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ0-9a-zA-Z\ \'\.,\?!]+$/,
                     "alertText": "* Tylko litery i liczby"
                 },
                 "ajaxUserCall": {
