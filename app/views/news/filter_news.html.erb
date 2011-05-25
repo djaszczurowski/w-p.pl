@@ -8,7 +8,7 @@
   <div class="post">
     <% if is_english_language%>
 
-      <h2 class="title"> <%= news.englishSubject %>  </h2><br />
+      <h2 class="title"> <%= news.subject %>  </h2><br />
       <p class="meta">
         <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
         <%  user = User.find(news.user_id) %>
@@ -16,7 +16,7 @@
       </p>
       <div style="clear: both;">&nbsp;</div>
       <div class="entry">
-        <% text = news.englishNews.split(" ") %>
+        <% text = news.news.split(" ") %>
         <p>
           <% for i in 0...PagesController.news_length %>
             <%= text[i].to_s + " " %>
@@ -38,7 +38,7 @@
 
     <%  else %>
 
-      <h2 class="title"> <%= news.polishSubject %>  </h2><br />
+      <h2 class="title"> <%= news.subject %>  </h2><br />
       <p class="meta">
         <span class="date"><%= news.posted.to_s[0..PagesController.date_length] %></span>
         <%  user = User.find(news.user_id) %>
@@ -46,7 +46,7 @@
       </p>
       <div style="clear: both;">&nbsp;</div>
       <div class="entry">
-        <% text = news.polishNews.split(" ") %>
+        <% text = news.news.split(" ") %>
         <p>
           <% for i in 0...PagesController.news_length %>
             <%= text[i].to_s + " " %>

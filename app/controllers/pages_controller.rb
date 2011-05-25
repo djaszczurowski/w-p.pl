@@ -16,11 +16,22 @@ class PagesController < ApplicationController
   @@news_on_main = ApplicationController.get_view_settings.news_on_main
   @@news_per_page = ApplicationController.get_view_settings.news_per_page
   @@contact_email = ApplicationController.get_contact_settings.email
+  @@position_x = 51.111 #51.111
+  @@position_y = 17.075 #17.055
   
   @@current_page = "/main"
   @@archive_begin_year = 2009
 
-	def self.contact_email
+
+  def self.position_x
+		@@position_x
+	end
+
+  def self.position_y
+		@@position_y
+	end
+
+  def self.contact_email
 		@@contact_email
 	end
 
@@ -75,7 +86,7 @@ class PagesController < ApplicationController
   def home
     @@current_page = "/main"
   	@title = "Strona Główna"
-    @news = News.all
+    @news = News.where(:language => cookies[:lang])
     @comments = Comment.all
   	respond_to do |format|
       format.html # index.html.erb
@@ -112,14 +123,16 @@ class PagesController < ApplicationController
     @@current_page = "/archive"
     if params[:month] == "All year"
       @news = News.find(:all,
-        :conditions => ["posted < ? AND posted >= ?",
+        :conditions => ["posted < ? AND posted >= ? AND language = ?",
           DateTime.new.change(:year => params[:year].to_i + 1),
-          DateTime.new.change(:year => params[:year].to_i)] )
+          DateTime.new.change(:year => params[:year].to_i),
+          cookies[:lang] ])
     else
       @news = News.find(:all,
-        :conditions => ["posted < ? AND posted >= ?",
+        :conditions => ["posted < ? AND posted >= ? AND language = ?",
           DateTime.new.change(:year => params[:year].to_i, :month => params[:month].to_i + 1),
-          DateTime.new.change(:year => params[:year].to_i, :month => params[:month].to_i)] )
+          DateTime.new.change(:year => params[:year].to_i, :month => params[:month].to_i),
+          cookies[:lang] ])
     end
     render 'archive'
   end
@@ -142,45 +155,9 @@ class PagesController < ApplicationController
     @email = params[:email]
     @subject = params[:subject]
     @user = params[:name]
-    #UserMailer.xxx
-    #UserMailer.contact_email(user, email, subject).deliver
-    #puts UserMailer.methods
     @content = params[:message]
     UserMailer.contact_email(@user, @email, @subject, @content).deliver
     puts UserMailer.method_defined?("welcome_email")
-
-#    Mail.defaults do
-#      smtp '127.0.0.1' # Port 25 defult
-#    end
-
-    #mail = Mail.new do
-     #     from 'mark1989@o2.pl'
-      #      to 'kulessa.marek@gmail.com'
-      # subject 'Here is the image you wanted'
-      #    body File.read('body.txt')
-      #add_file {:filename => 'somefile.png', :data => File.read('/somefile.png')}
-   # end
-
-    #mail.deliver!
-
-#    from_alias = 'marek'
-#    from = 'mark1989@o2.pl'
-#    to_alias = 'myself'
-#    to = 'kulessa.marek@gmail.com'
-#    subject = 'hello'
-#    message = 'how are you ?'
-#
-#    msg = <<END_OF_MESSAGE
-#    From: #{from_alias} <#{from}>
-#    To: #{to_alias} <#{to}>
-#    Subject: #{subject}
-
-    #{message}
-#END_OF_MESSAGE
-#
-#    Net::SMTP.start('localhost') do |smtp|
-#      smtp.send_message msg, from, to
-#    end
 
     redirect_to :back
   end

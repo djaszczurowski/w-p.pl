@@ -28,10 +28,8 @@
 <% @news.each do |news| %>
   <tr>
     <td><%= news.posted.to_s[0..PagesController.date_length] %></td>
-    <td><%= news.polishSubject %></td>
-    <td><%= news.polishNews %></td>
-    <td><%= news.englishSubject %></td>
-    <td><%= news.englishNews %></td>
+    <td><%= news.subject %></td>
+    <td><%= news.news %></td>
     <td><%= link_to 'Pokaż', news %></td>
     <td><%= link_to 'Edytuj', edit_news_path(news) %></td>
     <td><%= link_to 'Usuń', news, :confirm => 'Are you sure?', :method => :delete %></td>

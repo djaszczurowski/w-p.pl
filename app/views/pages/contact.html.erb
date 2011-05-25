@@ -1,7 +1,7 @@
 <!-- GOOGLE MAPS -->
 <script type="text/javascript">
   function initialize() {
-    var myLatlng = new google.maps.LatLng(51.111, 17.055);
+    var myLatlng = new google.maps.LatLng(<%= PagesController.position_x %>, <%= PagesController.position_y %>);
     var myOptions = {
       zoom: 13,
       center: myLatlng,

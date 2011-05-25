@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
     else
       cookies[:lang] = "en"
     end
-    redirect_to :back
+    redirect_to :root
   end
   
   def admin_panel  	

@@ -48,7 +48,7 @@ tinyMCE.init({
 <div class="post">
   <% if is_english_language%>
 
-    <h2 class="title"> <%= @news.englishSubject %>  </h2>
+    <h2 class="title"> <%= @news.subject %>  </h2>
     	&nbsp;&nbsp;  <%= link_to @news_category.englishName, @news_category %>	<br/>
     <p class="meta">
       <span class="date"><%= @news.posted.to_s[0..PagesController.date_length] %></span>
@@ -57,7 +57,7 @@ tinyMCE.init({
     </p>
     <div style="clear: both;">&nbsp;</div>
     <div class="entry">
-      <p><%= @news.englishNews %></p>
+      <p><%= @news.news %></p>
       <p class="links">
           <% link_name = "Comments (" + Comment.where(:news_id => @news.news_id).count.to_s + ")" %>
           <%= link_to link_name, change_is_showing_comments_path %>
@@ -93,7 +93,7 @@ tinyMCE.init({
 
   <%  else %>
 
-    <h2 class="title"> <%= @news.polishSubject %>  </h2>
+    <h2 class="title"> <%= @news.subject %>  </h2>
     &nbsp;&nbsp;  <%= link_to @news_category.polishName, @news_category %>	<br/>
     <p class="meta">
       <span class="date"><%= @news.posted.to_s[0..PagesController.date_length] %></span>
@@ -102,7 +102,7 @@ tinyMCE.init({
     </p>
     <div style="clear: both;">&nbsp;</div>
     <div class="entry">
-      <p><%=  @news.polishNews %></p>
+      <p><%=  @news.news %></p>
       <p class="links">
           <% link_name = "Komentarze (" + Comment.where(:news_id => @news.news_id).count.to_s + ")" %>
           <%= link_to link_name, change_is_showing_comments_path %>
